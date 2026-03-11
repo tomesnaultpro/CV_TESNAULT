@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>[NOM DU STAGE] — Bilan de stage — Tom Esnault</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-name">Tom Esnault</span>
+      <span class="nav-brand-sub">Portfolio</span>
+    </a>
+    <button class="nav-burger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="experience.html" class="active">Expérience</a>
+      <a href="projet.html">Projet</a>
+      <a href="association.html">Association</a>
+    </div>
+  </nav>
+
+  <!-- ===== DÉTAIL DU STAGE ===== -->
+  <div class="stage-detail-wrapper">
+
+    <!-- Retour -->
+    <a href="experience.html" class="stage-back-link">← Retour aux expériences</a>
+
+    <!-- En-tête du stage -->
+    <div class="stage-header">
+      <div class="stage-header-top">
+        <div class="stage-header-left">
+          <p class="stage-type">Bilan de stage</p>
+          <h1>[NOM DU STAGE]</h1>
+        </div>
+        <span class="badge">[DURÉE]</span>
+      </div>
+      <div class="stage-header-meta">
+        <div class="stage-meta-item">
+          <span class="stage-meta-label">Entreprise</span>
+          <span class="stage-meta-value">[NOM ENTREPRISE]</span>
+        </div>
+        <div class="stage-meta-item">
+          <span class="stage-meta-label">Secteur</span>
+          <span class="stage-meta-value">[SECTEUR]</span>
+        </div>
+        <div class="stage-meta-item">
+          <span class="stage-meta-label">Lieu</span>
+          <span class="stage-meta-value">[VILLE]</span>
+        </div>
+        <div class="stage-meta-item">
+          <span class="stage-meta-label">Période</span>
+          <span class="stage-meta-value">[DATES]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenu du stage — à remplir depuis le PDF -->
+    <div class="stage-content">
+
+      <!-- Présentation de l'entreprise -->
+      <div class="stage-block">
+        <h2 class="stage-block-title">Présentation de l'entreprise</h2>
+        <p>[Texte du PDF]</p>
+      </div>
+
+      <!-- Missions effectuées -->
+      <div class="stage-block">
+        <h2 class="stage-block-title">Missions effectuées</h2>
+        <ul>
+          <li>[Mission 1]</li>
+          <li>[Mission 2]</li>
+        </ul>
+      </div>
+
+      <!-- Compétences acquises -->
+      <div class="stage-block">
+        <h2 class="stage-block-title">Compétences acquises</h2>
+        <ul class="competence-list">
+          <li>[Compétence 1]</li>
+          <li>[Compétence 2]</li>
+        </ul>
+      </div>
+
+      <!-- Bilan personnel -->
+      <div class="stage-block">
+        <h2 class="stage-block-title">Bilan personnel</h2>
+        <p>[Texte du PDF]</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <span class="footer-name">Tom Esnault</span>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="experience.html">Expérience</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
