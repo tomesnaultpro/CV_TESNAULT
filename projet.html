@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projets — Tom Esnault</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root{--light:#e6e6e6;--mid:#999;--dark:#3d4c41;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:var(--light);color:#2a2a2a;}
+
+    nav{background:var(--dark);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;}
+    nav .logo{font-family:'Playfair Display',serif;color:var(--light);font-size:1.15rem;text-decoration:none;letter-spacing:1px;}
+    nav .nav-links{display:flex;gap:4px;}
+    nav .nav-links a{color:var(--light);text-decoration:none;padding:8px 20px;border-radius:4px;font-size:0.88rem;font-weight:500;transition:background 0.2s;}
+    nav .nav-links a:hover{background:rgba(255,255,255,0.12);}
+    nav .nav-links a.active{background:rgba(255,255,255,0.22);font-weight:600;}
+    .burger{display:none;background:none;border:none;color:var(--light);font-size:1.4rem;cursor:pointer;}
+
+    .page-header{background:var(--dark);padding:56px 48px 48px;color:var(--light);}
+    .page-header h1{font-family:'Playfair Display',serif;font-size:2.8rem;margin-bottom:8px;}
+    .page-header p{font-size:1rem;color:var(--mid);font-weight:300;}
+
+    .content{max-width:860px;margin:0 auto;padding:56px 48px;}
+
+    .project-card{
+      background:#fff;border-radius:10px;
+      padding:32px;margin-bottom:20px;
+      display:flex;gap:28px;align-items:flex-start;
+      box-shadow:0 2px 12px rgba(0,0,0,0.07);
+      border-left:5px solid var(--dark);
+      transition:transform 0.2s,box-shadow 0.2s;
+    }
+    .project-card:hover{transform:translateX(4px);box-shadow:0 6px 24px rgba(0,0,0,0.11);}
+    .project-icon{font-size:2.2rem;flex-shrink:0;width:56px;text-align:center;}
+    .project-info .tag{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--dark);background:var(--light);padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px;}
+    .project-info h3{font-size:1.1rem;font-weight:600;color:#1a1a1a;margin-bottom:8px;}
+    .project-info p{font-size:0.9rem;color:#666;line-height:1.65;font-weight:300;}
+
+    @media(max-width:700px){nav{padding:0 20px;}.burger{display:block;}.nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--dark);padding:12px;}.nav-links.open{display:flex;}.page-header{padding:36px 24px;}.content{padding:36px 24px;}.project-card{flex-direction:column;gap:16px;}}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="index.html">Tom Esnault</a>
+    <button class="burger" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="experience.html">Expérience</a>
+      <a href="projet.html" class="active">Projet</a>
+      <a href="association.html">Association</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Projets</h1>
+    <p>Événements et réalisations marquantes</p>
+  </div>
+
+  <div class="content">
+
+    <div class="project-card">
+      <div class="project-icon">🎶</div>
+      <div class="project-info">
+        <span class="tag">2 Dates — 2025</span>
+        <h3>Régisseur Son — Ciné-Rock</h3>
+        <p>Préparation et régie son pour deux concerts de l'orchestre harmonique Ciné-Rock aux Herbiers. Gestion complète de la sonorisation de l'événement.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">🎄</div>
+      <div class="project-info">
+        <span class="tag">Juin & Décembre</span>
+        <h3>Événements — Association Spot</h3>
+        <p>Préparation et organisation de la parade de Noël et d'un mini festival aux Herbiers. Mise en place technique et logistique des événements.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">➕</div>
+      <div class="project-info">
+        <span class="tag">À venir</span>
+        <h3>D'autres projets arrivent</h3>
+        <p>Cette section sera mise à jour au fur et à mesure de mes nouvelles réalisations.</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
