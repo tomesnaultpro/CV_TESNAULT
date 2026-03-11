@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document — Tom Esnault</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .viewer-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 0 24px;
+      flex-wrap: wrap;
+    }
+    .viewer-header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex: 1;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg);
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      padding: 9px 20px;
+      border-radius: var(--radius);
+      font-size: 0.83rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.18s, color 0.18s;
+    }
+    .btn-download:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .pdf-container {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .pdf-container iframe {
+      width: 100%;
+      height: 78vh;
+      border: none;
+      display: block;
+    }
+    .no-pdf {
+      padding: 60px 40px;
+      text-align: center;
+      color: var(--mid);
+    }
+    .no-pdf .icon { font-size: 3rem; margin-bottom: 16px; }
+    .no-pdf h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 8px; }
+    .no-pdf p { font-size: 0.88rem; }
+    .no-pdf a { color: var(--accent); font-weight: 600; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a class="navbar-logo" href="index.html">Tom Esnault</a>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar-links" id="navLinks">
+      <a href="experience.html">Expérience</a>
+      <a href="projet.html">Projet</a>
+      <a href="association.html">Association</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="viewer-header">
+      <a href="javascript:history.back()" class="back-btn" style="margin-bottom:0">← Retour</a>
+      <h1 id="docTitle">Document</h1>
+      <a id="downloadBtn" href="#" download class="btn-download">⬇ Télécharger</a>
+    </div>
+
+    <div class="pdf-container" id="pdfContainer">
+      <!-- Le PDF sera chargé ici par JS -->
+    </div>
+  </main>
+
+  <footer>
+    <strong>Tom Esnault</strong> — Terminale Bac Pro CIEL · Lycée Saint Gabriel ·
+    <a href="mailto:tomesnaultpro@gmail.com">tomesnaultpro@gmail.com</a>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function() {
+      // Lire les paramètres de l'URL
+      const params = new URLSearchParams(window.location.search);
+      const file  = params.get('file')  || '';
+      const title = params.get('title') || 'Document';
+
+      // Mettre à jour le titre de l'onglet et la page
+      document.title = title + ' — Tom Esnault';
+      document.getElementById('docTitle').textContent = title;
+
+      // Bouton téléchargement
+      const dlBtn = document.getElementById('downloadBtn');
+      dlBtn.href = file;
+      dlBtn.setAttribute('download', file.split('/').pop());
+
+      // Afficher le PDF dans l'iframe
+      const container = document.getElementById('pdfContainer');
+      if (file) {
+        container.innerHTML = `<iframe src="${file}" title="${title}"></iframe>`;
+
+        // Fallback si l'iframe échoue (ex: ouverture directe sans serveur)
+        const iframe = container.querySelector('iframe');
+        iframe.addEventListener('error', showFallback);
+        setTimeout(() => {
+          try {
+            if (!iframe.contentDocument && !iframe.contentWindow) showFallback();
+          } catch(e) { /* cross-origin, probablement ok */ }
+        }, 2000);
+      } else {
+        showFallback();
+      }
+
+      function showFallback() {
+        container.innerHTML = `
+          <div class="no-pdf">
+            <div class="icon">📄</div>
+            <h3>Document non trouvé</h3>
+            <p>Le fichier <strong>${file}</strong> n'est pas encore ajouté.<br>
+            Place ton PDF dans le dossier <code>/pdf/</code> avec le bon nom,<br>
+            ou <a href="${file}" target="_blank">ouvre-le directement</a>.</p>
+          </div>`;
+      }
+    })();
+  </script>
+</body>
+</html>

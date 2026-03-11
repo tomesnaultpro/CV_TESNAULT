@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vidéo Enfant — Tom Esnault</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .video-block {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .video-block h3 {
+      padding: 16px 20px 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .video-block p {
+      padding: 6px 20px 14px;
+      font-size: 0.83rem;
+      color: var(--text-light);
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+    }
+    .video-wrapper iframe,
+    .video-wrapper video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+      display: block;
+    }
+    .video-local {
+      width: 100%;
+      max-height: 400px;
+      display: block;
+      background: #000;
+    }
+    .pdf-also {
+      margin-top: 32px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a class="navbar-logo" href="index.html">Tom Esnault</a>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar-links" id="navLinks">
+      <a href="experience.html">Expérience</a>
+      <a href="projet.html" class="active">Projet</a>
+      <a href="association.html">Association</a>
+    </div>
+  </nav>
+
+  <!-- BANNER -->
+  <div class="page-banner">
+    <h1>Vidéo Enfant</h1>
+    <p>Réalisation vidéo — montage et production</p>
+  </div>
+
+  <main>
+
+    <a href="projet.html" class="back-btn">← Retour aux projets</a>
+
+    <div class="section-sep"><h2>🎥 Vidéos du projet</h2></div>
+
+    <!-- === VIDEO 1 : fichier local (mettre votre fichier dans /images/) === -->
+    <div class="video-block">
+      <h3>Vidéo principale</h3>
+      <p>Réalisation complète — montage DaVinci Resolve</p>
+      <video class="video-local" controls>
+        <source src="images/video-enfant.mp4" type="video/mp4">
+        <p style="padding:20px;color:#999">Votre navigateur ne supporte pas la vidéo. <a href="images/video-enfant.mp4">Télécharger</a></p>
+      </video>
+    </div>
+
+    <!-- === VIDEO 2 : YouTube (remplacer l'ID) === -->
+    <!--
+    <div class="video-block">
+      <h3>Version YouTube</h3>
+      <p>Disponible en ligne</p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO" allowfullscreen></iframe>
+      </div>
+    </div>
+    -->
+
+    <!-- Description -->
+    <div class="section-sep"><h2>📄 Description</h2></div>
+    <div class="formation-item" style="margin-bottom:16px">
+      <div>
+        <h3>Contexte du projet</h3>
+        <p>Ajoute ici une description de ton projet vidéo : objectif, matériel utilisé, durée, etc.</p>
+      </div>
+    </div>
+
+    <!-- PDF rapport si disponible -->
+    <div class="pdf-also">
+      <div class="section-sep"><h2>📎 Rapport / Document</h2></div>
+      <div class="card" style="max-width:320px;cursor:pointer" onclick="openPDF('pdf/videoenfant.pdf','Vidéo Enfant — Rapport')">
+        <div class="card-img">📄</div>
+        <div class="card-body">
+          <span class="card-tag">PDF</span>
+          <div class="card-title">Rapport du projet</div>
+          <div class="card-desc">Documentation complète du projet vidéo.</div>
+          <div class="card-arrow">Ouvrir le PDF →</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <strong>Tom Esnault</strong> — Terminale Bac Pro CIEL · Lycée Saint Gabriel ·
+    <a href="mailto:tomesnaultpro@gmail.com">tomesnaultpro@gmail.com</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

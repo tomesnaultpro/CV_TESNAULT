@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projets — Tom Esnault</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a class="navbar-logo" href="index.html">Tom Esnault</a>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar-links" id="navLinks">
+      <a href="experience.html">Expérience</a>
+      <a href="projet.html" class="active">Projet</a>
+      <a href="association.html">Association</a>
+    </div>
+  </nav>
+
+  <!-- BANNER -->
+  <div class="page-banner">
+    <h1>Projets</h1>
+    <p>Réalisations personnelles et scolaires</p>
+  </div>
+
+  <!-- CONTENU -->
+  <main>
+
+    <div class="section-sep"><h2>📁 Tous les projets</h2></div>
+
+    <div class="cards-grid">
+
+      <!-- C4F -->
+      <div class="card" onclick="openPDF('pdf/c4f.pdf', 'Projet C4F')">
+        <div class="card-img">🤖</div>
+        <div class="card-body">
+          <span class="card-tag">Scolaire</span>
+          <div class="card-title">C4F</div>
+          <div class="card-desc">Projet technologique réalisé dans le cadre du Bac Pro CIEL.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+      <!-- Vidéo enfant -->
+      <div class="card" onclick="window.location.href='projet-video-enfant.html'">
+        <div class="card-img">🎥</div>
+        <div class="card-body">
+          <span class="card-tag">Vidéo</span>
+          <div class="card-title">Vidéo Enfant</div>
+          <div class="card-desc">Réalisation vidéo — montage et production. Contient des extraits vidéo intégrés.</div>
+          <div class="card-arrow">Voir le projet →</div>
+        </div>
+      </div>
+
+      <!-- Vidéo PO -->
+      <div class="card" onclick="openPDF('pdf/videopo.pdf', 'Vidéo pour la PO')">
+        <div class="card-img">🎬</div>
+        <div class="card-body">
+          <span class="card-tag">Vidéo</span>
+          <div class="card-title">Vidéo pour la PO</div>
+          <div class="card-desc">Vidéo réalisée à la demande de la PO — cadrage, montage et post-production.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+      <!-- Stop Motion -->
+      <div class="card" onclick="openPDF('pdf/stopmotion.pdf', 'Stop Motion')">
+        <div class="card-img">🎞️</div>
+        <div class="card-body">
+          <span class="card-tag">Animation</span>
+          <div class="card-title">Stop Motion</div>
+          <div class="card-desc">Création d'une animation image par image — conception, prise de vue et montage.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+      <!-- Échiquier électronique -->
+      <div class="card" onclick="openPDF('pdf/echiquier.pdf', 'Échiquier électronique')">
+        <div class="card-img">♟️</div>
+        <div class="card-body">
+          <span class="card-tag">Électronique</span>
+          <div class="card-title">Échiquier électronique</div>
+          <div class="card-desc">Conception d'un échiquier connecté — électronique, programmation et intégration.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+      <!-- Site Web -->
+      <div class="card" onclick="openPDF('pdf/siteweb.pdf', 'Création de site web')">
+        <div class="card-img">🌐</div>
+        <div class="card-body">
+          <span class="card-tag">Web</span>
+          <div class="card-title">Site Web</div>
+          <div class="card-desc">Création d'un site internet — HTML, CSS et JavaScript. Ce portfolio en fait partie.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>Tom Esnault</strong> — Terminale Bac Pro CIEL · Lycée Saint Gabriel ·
+    <a href="mailto:tomesnaultpro@gmail.com">tomesnaultpro@gmail.com</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

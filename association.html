@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Association — Tom Esnault</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a class="navbar-logo" href="index.html">Tom Esnault</a>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar-links" id="navLinks">
+      <a href="experience.html">Expérience</a>
+      <a href="projet.html">Projet</a>
+      <a href="association.html" class="active">Association</a>
+    </div>
+  </nav>
+
+  <!-- BANNER -->
+  <div class="page-banner">
+    <h1>Association</h1>
+    <p>Engagements bénévoles et associatifs</p>
+  </div>
+
+  <!-- CONTENU -->
+  <main>
+
+    <!-- ===== ASSOCIATION AUDIOVISUELLE ===== -->
+    <div class="section-sep"><h2>🎵 Association audiovisuelle</h2></div>
+
+    <div class="cards-grid">
+
+      <!-- Poupet -->
+      <div class="card" onclick="openPDF('pdf/poupet.pdf', 'Festival de Poupet')">
+        <div class="card-img">🎶</div>
+        <div class="card-body">
+          <span class="card-tag">12 Dates · Bénévole</span>
+          <div class="card-title">Festival de Poupet</div>
+          <div class="card-desc">Festival de musique en Vendée. Bénévole permanent sur 12 dates consécutives.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+      <!-- Roue Cool -->
+      <div class="card" onclick="openPDF('pdf/rouecool.pdf', 'Roue Cool')">
+        <div class="card-img">🎡</div>
+        <div class="card-body">
+          <span class="card-tag">Événement</span>
+          <div class="card-title">Roue Cool</div>
+          <div class="card-desc">Participation à l'organisation et à la technique de l'événement Roue Cool.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+      <!-- Spot -->
+      <div class="card" onclick="openPDF('pdf/spot.pdf', 'Association Spot')">
+        <div class="card-img">🎪</div>
+        <div class="card-body">
+          <span class="card-tag">Les Herbiers</span>
+          <div class="card-title">Association Spot</div>
+          <div class="card-desc">Parade de Noël et mini festival aux Herbiers. Préparation technique et logistique.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+      <!-- Accordéon & Théâtre -->
+      <div class="card" onclick="openPDF('pdf/accordeontheatre.pdf', 'Accordéon et Théâtre')">
+        <div class="card-img">🎻</div>
+        <div class="card-body">
+          <span class="card-tag">Spectacle</span>
+          <div class="card-title">Accordéon et Théâtre</div>
+          <div class="card-desc">Participation à des événements culturels mêlant accordéon et théâtre.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ===== ASSOCIATION SPORTIVE ===== -->
+    <div class="section-sep"><h2>🏅 Association sportive</h2></div>
+
+    <div class="cards-grid">
+
+      <!-- Handball -->
+      <div class="card" onclick="openPDF('pdf/handball.pdf', 'Handball')">
+        <div class="card-img">🤾</div>
+        <div class="card-body">
+          <span class="card-tag">Champion Vendée 2025</span>
+          <div class="card-title">Handball</div>
+          <div class="card-desc">Pratique du handball en club — Champion de Vendée 2025.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+      <!-- Ski -->
+      <div class="card" onclick="openPDF('pdf/ski.pdf', 'Ski')">
+        <div class="card-img">⛷️</div>
+        <div class="card-body">
+          <span class="card-tag">3ème Étoile</span>
+          <div class="card-title">Ski</div>
+          <div class="card-desc">Pratique du ski — niveau 3ème Étoile.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+      <!-- Tennis -->
+      <div class="card" onclick="openPDF('pdf/tennis.pdf', 'Tennis')">
+        <div class="card-img">🎾</div>
+        <div class="card-body">
+          <span class="card-tag">9 ans de pratique</span>
+          <div class="card-title">Tennis</div>
+          <div class="card-desc">Pratique du tennis depuis 9 ans en club.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+      <!-- L'Outil en Main -->
+      <div class="card" onclick="openPDF('pdf/outilenmain.pdf', 'L\'Outil en Main')">
+        <div class="card-img">🔨</div>
+        <div class="card-body">
+          <span class="card-tag">Association</span>
+          <div class="card-title">L'Outil en Main</div>
+          <div class="card-desc">Transmission de savoir-faire artisanal aux jeunes — bénévolat et partage.</div>
+          <div class="card-arrow">Voir le document →</div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>Tom Esnault</strong> — Terminale Bac Pro CIEL · Lycée Saint Gabriel ·
+    <a href="mailto:tomesnaultpro@gmail.com">tomesnaultpro@gmail.com</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
