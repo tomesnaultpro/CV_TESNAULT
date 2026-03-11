@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expérience — Tom Esnault</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Tom Esnault</a>
+    <button class="burger" onclick="toggleMenu()">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="experience.html" class="active">Expérience</a>
+      <a href="projet.html">Projet</a>
+      <a href="association.html">Association</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Expérience</h1>
+    <p>Stages professionnels, formation et compétences</p>
+  </div>
+
+  <div class="content">
+
+    <!-- ===== STAGES ===== -->
+    <h2 class="section-title">Stages professionnels</h2>
+    <div class="cards-grid">
+
+      <!-- Grand Finale Studio Sonore — avec PDF -->
+      <div class="card clickable" onclick="openPDF('pdf/stage-grand-finale.pdf', 'Grand Finale Studio Sonore')">
+        <div class="card-logo-placeholder">🎵</div>
+        <span class="card-tag">3 semaines</span>
+        <h3>Grand Finale Studio Sonore</h3>
+        <p>Studio de production musicale — prise en main du matériel audio professionnel.</p>
+        <span class="card-action">📄 Voir le bilan de stage</span>
+      </div>
+
+      <!-- Nant'Effect — avec PDF -->
+      <div class="card clickable" onclick="openPDF('pdf/stage-nanteffect.pdf', 'Nant\'Effect')">
+        <div class="card-logo-placeholder">✨</div>
+        <span class="card-tag">3 semaines</span>
+        <h3>Nant'Effect</h3>
+        <p>Prestataire d'effets du spectacle dans le monde — effets scéniques et techniques.</p>
+        <span class="card-action">📄 Voir le bilan de stage</span>
+      </div>
+
+      <!-- Cholet Music Peps — avec PDF -->
+      <div class="card clickable" onclick="openPDF('pdf/stage-cholet-music-peps.pdf', 'Cholet Music Peps')">
+        <div class="card-logo-placeholder">🔊</div>
+        <span class="card-tag">4 semaines</span>
+        <h3>Cholet Music Peps</h3>
+        <p>Prestataire de sonorisation et d'éclairage — installation et régie son/lumière.</p>
+        <span class="card-action">📄 Voir le bilan de stage</span>
+      </div>
+
+      <!-- Théâtre Pierre Barouh — avec PDF -->
+      <div class="card clickable" onclick="openPDF('pdf/stage-theatre-pierre-barouh.pdf', 'Théâtre Pierre Barouh')">
+        <div class="card-logo-placeholder">🎭</div>
+        <span class="card-tag">4 semaines</span>
+        <h3>Théâtre Pierre Barouh</h3>
+        <p>Théâtre de la ville des Herbiers — gestion technique et régie spectacle.</p>
+        <span class="card-action">📄 Voir le bilan de stage</span>
+      </div>
+
+      <!-- TV Vendée — PAS de PDF -->
+      <div class="card">
+        <div class="card-logo-placeholder">📺</div>
+        <span class="card-tag">4 jours</span>
+        <h3>TV Vendée</h3>
+        <p>Télévision régionale de la Vendée — découverte de la production télévisuelle.</p>
+      </div>
+
+      <!-- Nov FM — PAS de PDF -->
+      <div class="card">
+        <div class="card-logo-placeholder">📻</div>
+        <span class="card-tag">3 jours</span>
+        <h3>Nov FM</h3>
+        <p>Radio du nord-ouest Vendée — initiation à la production et diffusion radio.</p>
+      </div>
+
+      <!-- ADEAT — avec PDF -->
+      <div class="card clickable" onclick="openPDF('pdf/stage-adeat.pdf', 'ADEAT')">
+        <div class="card-logo-placeholder">🔧</div>
+        <span class="card-tag">4 semaines</span>
+        <h3>ADEAT</h3>
+        <p>Dépannage électroménager-TV aux Herbiers — diagnostic et réparation matériel.</p>
+        <span class="card-action">📄 Voir le bilan de stage</span>
+      </div>
+
+    </div>
+
+    <!-- ===== FORMATION ===== -->
+    <h2 class="section-title">Formation</h2>
+    <div class="formation-list">
+
+      <div class="formation-item">
+        <div class="fi-left">
+          <h3>Lycée Saint Gabriel</h3>
+          <p>Terminale Bac Pro CIEL — Audiovisuel Professionnel et Réseaux</p>
+        </div>
+        <div class="fi-right">2025 – 2026<br><span class="badge">En cours</span></div>
+      </div>
+
+      <div class="formation-item">
+        <div class="fi-left">
+          <h3>Collège Jean Yole</h3>
+          <p>Troisième générale</p>
+        </div>
+        <div class="fi-right">Diplômé<br><span class="badge">DNB — Mention TB</span></div>
+      </div>
+
+      <div class="formation-item">
+        <div class="fi-left">
+          <h3>BIA — Brevet d'Initiation à l'Aéronautique</h3>
+          <p>Préparation et passage de l'examen BIA</p>
+        </div>
+        <div class="fi-right">En cours</div>
+      </div>
+
+    </div>
+
+    <!-- ===== COMPÉTENCES ===== -->
+    <h2 class="section-title">Compétences</h2>
+    <div class="skills-grid">
+
+      <div class="skill-block">
+        <h3>Audiovisuel</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Régie son</span>
+          <span class="skill-tag">Régie lumière</span>
+          <span class="skill-tag">Allen & Heath</span>
+          <span class="skill-tag">GrandMA2</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Montage vidéo</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">DaVinci Resolve</span>
+          <span class="skill-tag">Montage</span>
+          <span class="skill-tag">Étalonnage</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Réseaux informatiques</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Paramétrage Dante</span>
+          <span class="skill-tag">Infrastructure réseau</span>
+          <span class="skill-tag">Configuration IP</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>MAO</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Rekordbox</span>
+          <span class="skill-tag">Production audio</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Logiciels audiovisuels</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">DaVinci Resolve</span>
+          <span class="skill-tag">GrandMA2</span>
+          <span class="skill-tag">Visio</span>
+          <span class="skill-tag">Rekordbox</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Création multimédia</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Montage vidéo</span>
+          <span class="skill-tag">Stop motion</span>
+          <span class="skill-tag">Site web</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PDF VIEWER OVERLAY -->
+  <div id="pdf-overlay">
+    <div class="pdf-box">
+      <div class="pdf-topbar">
+        <span id="pdf-title">Document</span>
+        <button class="pdf-close" onclick="closePDF()">✕ Fermer</button>
+      </div>
+      <iframe id="pdf-frame" src=""></iframe>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

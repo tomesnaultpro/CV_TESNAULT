@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Association — Tom Esnault</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Tom Esnault</a>
+    <button class="burger" onclick="toggleMenu()">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="experience.html">Expérience</a>
+      <a href="projet.html">Projet</a>
+      <a href="association.html" class="active">Association</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Association</h1>
+    <p>Engagements bénévoles et associatifs</p>
+  </div>
+
+  <div class="content">
+
+    <!-- ===== AUDIOVISUEL ===== -->
+    <h2 class="section-title">Association audiovisuelle</h2>
+    <div class="cards-grid">
+
+      <div class="card clickable" onclick="openPDF('pdf/asso-poupet.pdf', 'Festival de Poupet')">
+        <div class="card-logo-placeholder">🎵</div>
+        <h3>Poupet</h3>
+        <p>Bénévole permanent sur le festival de musique de Poupet en Vendée — 12 dates.</p>
+        <span class="card-action">📄 Voir le document</span>
+      </div>
+
+      <div class="card clickable" onclick="openPDF('pdf/asso-roue-cool.pdf', 'Roue Cool')">
+        <div class="card-logo-placeholder">🎪</div>
+        <h3>Roue Cool</h3>
+        <p>Participation à l'association Roue Cool.</p>
+        <span class="card-action">📄 Voir le document</span>
+      </div>
+
+      <div class="card clickable" onclick="openPDF('pdf/asso-spot.pdf', 'Association Spot')">
+        <div class="card-logo-placeholder">💡</div>
+        <h3>Spot</h3>
+        <p>Préparation d'événements locaux aux Herbiers — parade de Noël et mini festival.</p>
+        <span class="card-action">📄 Voir le document</span>
+      </div>
+
+      <div class="card clickable" onclick="openPDF('pdf/asso-accordeon-theatre.pdf', 'Accordéon et Théâtre')">
+        <div class="card-logo-placeholder">🎭</div>
+        <h3>Accordéon et Théâtre</h3>
+        <p>Participation aux activités de l'association Accordéon et Théâtre.</p>
+        <span class="card-action">📄 Voir le document</span>
+      </div>
+
+    </div>
+
+    <!-- ===== SPORTIF ===== -->
+    <h2 class="section-title">Association sportive</h2>
+    <div class="cards-grid">
+
+      <div class="card clickable" onclick="openPDF('pdf/asso-handball.pdf', 'Handball')">
+        <div class="card-logo-placeholder">🤾</div>
+        <h3>Handball</h3>
+        <p>Champion de Vendée 2025.</p>
+        <span class="card-action">📄 Voir le document</span>
+      </div>
+
+      <div class="card clickable" onclick="openPDF('pdf/asso-ski.pdf', 'Ski')">
+        <div class="card-logo-placeholder">⛷️</div>
+        <h3>Ski</h3>
+        <p>3ème Étoile.</p>
+        <span class="card-action">📄 Voir le document</span>
+      </div>
+
+      <div class="card clickable" onclick="openPDF('pdf/asso-tennis.pdf', 'Tennis')">
+        <div class="card-logo-placeholder">🎾</div>
+        <h3>Tennis</h3>
+        <p>Pratique du tennis depuis 9 ans.</p>
+        <span class="card-action">📄 Voir le document</span>
+      </div>
+
+    </div>
+
+    <!-- ===== L'OUTIL EN MAIN ===== -->
+    <h2 class="section-title">L'Outil en Main</h2>
+    <div class="cards-grid">
+
+      <div class="card clickable" onclick="openPDF('pdf/outil-en-main.pdf', 'L\'Outil en Main')">
+        <div class="card-logo-placeholder">🔨</div>
+        <h3>L'Outil en Main</h3>
+        <p>Participation à l'opération L'Outil en Main.</p>
+        <span class="card-action">📄 Voir le document</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PDF VIEWER OVERLAY -->
+  <div id="pdf-overlay">
+    <div class="pdf-box">
+      <div class="pdf-topbar">
+        <span id="pdf-title">Document</span>
+        <button class="pdf-close" onclick="closePDF()">✕ Fermer</button>
+      </div>
+      <iframe id="pdf-frame" src=""></iframe>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
