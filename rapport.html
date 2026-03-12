@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rapport — Tom Esnault</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ======================================================
+       RAPPORT — STYLES SPÉCIFIQUES
+       ====================================================== */
+
+    /* Page de couverture redessinée */
+    .rapport-cover {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-top: 5px solid var(--color-dark);
+      border-radius: var(--radius-lg);
+      padding: 52px 56px 44px;
+      margin-bottom: 32px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .cover-left {}
+
+    .cover-eyebrow {
+      font-size: 0.67rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-mid);
+      margin-bottom: 14px;
+    }
+
+    .cover-title {
+      font-family: var(--font-serif);
+      font-size: 2.1rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .cover-subtitle {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: normal;
+      color: var(--color-text-2);
+      margin-bottom: 28px;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+    }
+
+    .cover-meta-item {}
+    .cover-meta-label {
+      font-size: 0.62rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--color-mid);
+      margin-bottom: 2px;
+    }
+    .cover-meta-value {
+      font-size: 0.84rem;
+      color: var(--color-text);
+    }
+
+    .cover-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--color-dark);
+      color: var(--color-white);
+      font-size: 0.7rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    /* Sommaire */
+    .rapport-sommaire {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 28px 36px;
+      margin-bottom: 32px;
+    }
+
+    .sommaire-title {
+      font-family: var(--font-serif);
+      font-size: 0.88rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--color-bg);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.72rem;
+    }
+
+    .sommaire-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .sommaire-list li a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 0.81rem;
+      color: var(--color-text-2);
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s;
+      gap: 12px;
+    }
+
+    .sommaire-list li a:hover { color: var(--color-dark); }
+
+    .sommaire-list li a .sommaire-num {
+      font-family: var(--font-serif);
+      color: var(--color-mid);
+      font-size: 0.72rem;
+      min-width: 18px;
+    }
+
+    .sommaire-list li a .sommaire-name { flex: 1; }
+
+    .sommaire-dots {
+      flex: 1;
+      border-bottom: 1px dotted var(--color-border);
+      margin: 0 8px;
+      height: 1px;
+      align-self: center;
+    }
+
+    /* Rapport body */
+    .rapport-body {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Bloc générique */
+    .rapport-bloc {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .rapport-bloc-header {
+      padding: 22px 36px 18px;
+      border-bottom: 1px solid var(--color-bg);
+    }
+
+    .rapport-bloc-num {
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-mid);
+      margin-bottom: 4px;
+    }
+
+    .rapport-bloc-titre {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      line-height: 1.2;
+    }
+
+    .rapport-bloc-body {
+      padding: 28px 36px;
+    }
+
+    .rapport-bloc-body p {
+      font-size: 0.84rem;
+      color: var(--color-text-2);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+    .rapport-bloc-body p:last-child { margin-bottom: 0; }
+    .rapport-bloc-body strong { color: var(--color-dark); font-weight: normal; border-bottom: 1px solid rgba(61,76,65,0.25); }
+    .rapport-bloc-body em { font-style: italic; color: var(--color-text); }
+
+    .rapport-bloc-body ol,
+    .rapport-bloc-body ul {
+      padding-left: 22px;
+      font-size: 0.84rem;
+      color: var(--color-text-2);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+    .rapport-bloc-body li { margin-bottom: 6px; }
+    .rapport-bloc-body ol li { padding-left: 4px; }
+
+    /* Sous-sections */
+    .rapport-sous-section {
+      padding: 24px 36px;
+      border-top: 1px solid var(--color-bg);
+    }
+    .rapport-sous-section:first-child { border-top: none; }
+
+    .rapport-sous-titre {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      margin-bottom: 14px;
+    }
+
+    /* Items de description (locaux) */
+    .rapport-item {
+      padding: 18px 36px;
+      border-top: 1px solid var(--color-bg);
+    }
+
+    .rapport-item-titre {
+      font-family: var(--font-serif);
+      font-size: 0.88rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      margin-bottom: 8px;
+    }
+
+    .rapport-item p {
+      font-size: 0.82rem;
+      color: var(--color-text-2);
+      line-height: 1.8;
+    }
+    .rapport-item p strong { color: var(--color-dark); font-weight: normal; border-bottom: 1px solid rgba(61,76,65,0.25); }
+
+    /* Activités */
+    .rapport-activite {
+      padding: 28px 36px;
+      border-top: 1px solid var(--color-bg);
+    }
+
+    .activite-titre {
+      font-family: var(--font-serif);
+      font-size: 0.97rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-bg);
+    }
+
+    /* Étapes numérotées */
+    .etape-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .etape-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--color-dark);
+      color: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .etape-titre {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: normal;
+      color: var(--color-dark);
+    }
+
+    /* Images */
+    .rapport-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .rapport-images.full {
+      flex-direction: column;
+    }
+
+    .rapport-images img {
+      border-radius: var(--radius);
+      border: 1px solid var(--color-border);
+      max-height: 240px;
+      object-fit: cover;
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .rapport-images.full img {
+      max-height: none;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    /* Tableau DMX */
+    .dmx-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.79rem;
+      margin-top: 14px;
+    }
+
+    .dmx-table th {
+      background: var(--color-dark);
+      color: var(--color-white);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: normal;
+      font-size: 0.72rem;
+      letter-spacing: 0.5px;
+    }
+
+    .dmx-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--color-bg);
+      color: var(--color-text-2);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .dmx-table tr:nth-child(even) td { background: #f9f9f9; }
+    .dmx-table td:first-child {
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      color: var(--color-dark);
+      white-space: nowrap;
+      width: 52px;
+    }
+    .dmx-table td:nth-child(2) {
+      font-weight: normal;
+      color: var(--color-text);
+      white-space: nowrap;
+      width: 160px;
+    }
+
+    /* MAC Aura bloc */
+    .mac-images-header {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .mac-images-header img {
+      height: 160px;
+      width: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--color-border);
+      object-fit: contain;
+    }
+
+    /* Bilan réussites/difficultés */
+    .bilan-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--color-bg);
+    }
+
+    .bilan-col {
+      background: var(--color-white);
+      padding: 28px 32px;
+    }
+
+    .bilan-col-titre {
+      font-family: var(--font-serif);
+      font-size: 0.92rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bilan-icon { font-size: 1rem; }
+
+    /* Navigation ancrée */
+    .rapport-nav {
+      position: sticky;
+      top: var(--nav-h);
+      z-index: 100;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .rapport-nav::-webkit-scrollbar { display: none; }
+
+    .rapport-nav a {
+      font-size: 0.72rem;
+      letter-spacing: 0.5px;
+      color: var(--color-mid);
+      padding: 12px 16px;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+    }
+
+    .rapport-nav a:hover,
+    .rapport-nav a.active {
+      color: var(--color-dark);
+      border-bottom-color: var(--color-dark);
+    }
+
+    /* Ancres */
+    .rapport-anchor {
+      scroll-margin-top: calc(var(--nav-h) + 48px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .rapport-cover {
+        grid-template-columns: 1fr;
+        padding: 28px 22px;
+      }
+      .cover-right { align-items: flex-start; }
+      .cover-meta-grid { grid-template-columns: 1fr; }
+      .rapport-bloc-header { padding: 18px 20px 14px; }
+      .rapport-bloc-body { padding: 20px; }
+      .rapport-sous-section { padding: 18px 20px; }
+      .rapport-item { padding: 16px 20px; }
+      .rapport-activite { padding: 20px; }
+      .bilan-grid { grid-template-columns: 1fr; }
+      .bilan-col { padding: 20px; }
+      .rapport-nav { padding: 0 16px; }
+      .mac-images-header img { height: 110px; }
+    }
+
+    @media (max-width: 480px) {
+      .cover-title { font-size: 1.6rem; }
+      .rapport-images img { max-height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION PRINCIPALE -->
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-name">Tom Esnault</span>
+      <span class="nav-brand-sub">Portfolio</span>
+    </a>
+    <button class="nav-burger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="experience.html" class="active">Expérience</a>
+      <a href="projet.html">Projet</a>
+      <a href="association.html">Association</a>
+    </div>
+  </nav>
+
+  <!-- NAVIGATION DU RAPPORT (remplie par JS) -->
+  <div class="rapport-nav" id="rapportNav"></div>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div class="stage-detail-wrapper" id="rapportContainer">
+    <!-- Rempli dynamiquement par JS -->
+    <p style="text-align:center; color: var(--color-mid); padding: 60px 0; font-size:0.85rem;">
+      Chargement du rapport…
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <span class="footer-name">Tom Esnault</span>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="experience.html">Expérience</a>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="script.js"></script>
+  <script>
+  /* ============================================================
+     RAPPORT — MOTEUR DE RENDU DYNAMIQUE
+     Usage : rapport.html?theatre-pierre-barouh
+     ============================================================ */
+
+  (function() {
+
+    // ——— Utilitaires ———
+    function imgs(list, cssClass) {
+      if (!list || !list.length) return '';
+      const cls = list[0].full ? 'full' : (cssClass || '');
+      return `<div class="rapport-images ${cls}">${list.map(i =>
+        `<img src="${i.src}" alt="${i.alt || ''}" loading="lazy"/>`
+      ).join('')}</div>`;
+    }
+
+    function renderBlocs(blocs) {
+      return (blocs || []).map(b => `
+        <div class="rapport-sous-section">
+          ${b.titre ? `<h4 class="rapport-sous-titre">${b.titre}</h4>` : ''}
+          <div>${b.contenu || ''}</div>
+          ${b.image ? imgs([b.image]) : ''}
+        </div>
+      `).join('');
+    }
+
+    // ——— Rendus par type de section ———
+    const renderers = {
+
+      remerciements: (s, idx) => `
+        <div class="rapport-bloc rapport-anchor" id="s${idx}">
+          <div class="rapport-bloc-header">
+            <div class="rapport-bloc-num">Section ${idx + 1}</div>
+            <h2 class="rapport-bloc-titre">${s.titre}</h2>
+          </div>
+          <div class="rapport-bloc-body">${s.contenu}</div>
+        </div>`,
+
+      section: (s, idx) => `
+        <div class="rapport-bloc rapport-anchor" id="s${idx}">
+          <div class="rapport-bloc-header">
+            <div class="rapport-bloc-num">Section ${idx + 1}</div>
+            <h2 class="rapport-bloc-titre">${s.titre}</h2>
+          </div>
+          ${s.contenu ? `<div class="rapport-bloc-body">${s.contenu}</div>` : ''}
+          ${(s.sous_sections || []).map(ss => `
+            <div class="rapport-sous-section">
+              <h3 class="rapport-sous-titre">${ss.titre}</h3>
+              ${ss.contenu ? `<div>${ss.contenu}</div>` : ''}
+              ${ss.images ? imgs(ss.images) : ''}
+            </div>
+          `).join('')}
+          ${(s.items || []).map(item => `
+            <div class="rapport-item">
+              <h4 class="rapport-item-titre">${item.terme}</h4>
+              <p>${item.description}</p>
+              ${item.images ? imgs(item.images) : ''}
+            </div>
+          `).join('')}
+          ${s.suite ? `
+            <div class="rapport-sous-section">
+              <h3 class="rapport-sous-titre">${s.suite.titre}</h3>
+              ${imgs(s.suite.images)}
+            </div>
+          ` : ''}
+        </div>`,
+
+      activites: (s, idx) => `
+        <div class="rapport-bloc rapport-anchor" id="s${idx}">
+          <div class="rapport-bloc-header">
+            <div class="rapport-bloc-num">Section ${idx + 1}</div>
+            <h2 class="rapport-bloc-titre">${s.titre}</h2>
+          </div>
+          ${(s.activites || []).map(a => `
+            <div class="rapport-activite">
+              <h3 class="activite-titre">${a.titre}</h3>
+              <div class="rapport-bloc-body" style="padding:0;">${a.contenu}</div>
+              ${a.images ? imgs(a.images) : ''}
+            </div>
+          `).join('')}
+        </div>`,
+
+      etude_de_cas: (s, idx) => `
+        <div class="rapport-bloc rapport-anchor" id="s${idx}">
+          <div class="rapport-bloc-header">
+            <div class="rapport-bloc-num">Section ${idx + 1}</div>
+            <h2 class="rapport-bloc-titre">${s.titre}</h2>
+          </div>
+          <div class="rapport-bloc-body">
+            ${s.intro}
+            ${s.image_intro ? imgs([s.image_intro]) : ''}
+            <div style="margin-top:20px;">${s.mise_en_situation}</div>
+          </div>
+          ${(s.etapes || []).map(e => `
+            <div class="rapport-activite">
+              <div class="etape-header">
+                <div class="etape-num">${e.num}</div>
+                <h3 class="etape-titre">${e.titre}</h3>
+              </div>
+              <div class="rapport-bloc-body" style="padding:0;">${e.contenu}</div>
+              ${e.images ? imgs(e.images) : ''}
+              ${e.suite ? `<div class="rapport-bloc-body" style="padding:18px 0 0;">${e.suite}</div>` : ''}
+              ${e.images_suite ? imgs(e.images_suite) : ''}
+            </div>
+          `).join('')}
+        </div>`,
+
+      schema: (s, idx) => `
+        <div class="rapport-bloc rapport-anchor" id="s${idx}">
+          <div class="rapport-bloc-header">
+            <div class="rapport-bloc-num">Section ${idx + 1}</div>
+            <h2 class="rapport-bloc-titre">${s.titre}</h2>
+          </div>
+          <div class="rapport-bloc-body">${imgs([s.image])}</div>
+          <div class="rapport-bloc-header" style="border-top:1px solid var(--color-bg); border-bottom:none; padding-top:20px;">
+            <h3 class="rapport-bloc-titre" style="font-size:1rem;">${s.interpretation.titre}</h3>
+          </div>
+          ${renderBlocs(s.interpretation.blocs)}
+        </div>`,
+
+      mac_aura: (s, idx) => `
+        <div class="rapport-bloc rapport-anchor" id="s${idx}">
+          <div class="rapport-bloc-header">
+            <div class="rapport-bloc-num">Section ${idx + 1}</div>
+            <h2 class="rapport-bloc-titre">${s.titre}</h2>
+          </div>
+          <div class="rapport-bloc-body">
+            <div class="mac-images-header">${(s.images_header||[]).map(i =>
+              `<img src="${i.src}" alt="${i.alt}" loading="lazy"/>`
+            ).join('')}</div>
+            ${(s.blocs||[]).map(b => `
+              <h4 class="rapport-sous-titre" style="margin-top:18px;">${b.titre}</h4>
+              ${b.contenu}
+            `).join('')}
+            <table class="dmx-table">
+              <thead><tr>${(s.tableau_dmx[0]||[]).map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+              <tbody>${s.tableau_dmx.slice(1).map(row=>
+                `<tr>${row.map(c=>`<td>${c}</td>`).join('')}</tr>`
+              ).join('')}</tbody>
+            </table>
+            ${(s.blocs_suite||[]).map(b => `
+              <h4 class="rapport-sous-titre" style="margin-top:22px;">${b.titre}</h4>
+              ${b.contenu}
+              ${b.image ? imgs([b.image]) : ''}
+            `).join('')}
+          </div>
+        </div>`,
+
+      bilan: (s, idx) => `
+        <div class="rapport-bloc rapport-anchor" id="s${idx}">
+          <div class="rapport-bloc-header">
+            <div class="rapport-bloc-num">Section ${idx + 1}</div>
+            <h2 class="rapport-bloc-titre">${s.titre}</h2>
+          </div>
+          <div class="bilan-grid">
+            <div class="bilan-col">
+              <h3 class="bilan-col-titre"><span class="bilan-icon">✓</span> ${s.reussites.titre}</h3>
+              <div class="rapport-bloc-body" style="padding:0;">${s.reussites.contenu}</div>
+            </div>
+            <div class="bilan-col">
+              <h3 class="bilan-col-titre"><span class="bilan-icon">◎</span> ${s.difficultes.titre}</h3>
+              <div class="rapport-bloc-body" style="padding:0;">${s.difficultes.contenu}</div>
+            </div>
+          </div>
+        </div>`,
+
+      conclusion: (s, idx) => `
+        <div class="rapport-bloc rapport-anchor" id="s${idx}">
+          <div class="rapport-bloc-header">
+            <div class="rapport-bloc-num">Section ${idx + 1}</div>
+            <h2 class="rapport-bloc-titre">${s.titre}</h2>
+          </div>
+          <div class="rapport-bloc-body">${s.contenu}</div>
+        </div>`
+    };
+
+    // ——— Rendu de la couverture ———
+    function renderCover(d) {
+      return `
+        <a href="${d.retour_href || 'experience.html'}" class="stage-back-link">← Retour aux expériences</a>
+        <div class="rapport-cover">
+          <div class="cover-left">
+            <p class="cover-eyebrow">${d.type}</p>
+            <h1 class="cover-title">${d.titre}</h1>
+            <p class="cover-subtitle">${d.sous_titre}</p>
+            <div class="cover-meta-grid">
+              ${d.periode ? `<div class="cover-meta-item"><p class="cover-meta-label">Période</p><p class="cover-meta-value">${d.periode}</p></div>` : ''}
+              ${d.lieu ? `<div class="cover-meta-item"><p class="cover-meta-label">Lieu</p><p class="cover-meta-value">${d.lieu}</p></div>` : ''}
+              ${d.maitre_stage ? `<div class="cover-meta-item"><p class="cover-meta-label">Maître de stage</p><p class="cover-meta-value">${d.maitre_stage}</p></div>` : ''}
+              ${d.contact_mail ? `<div class="cover-meta-item"><p class="cover-meta-label">Contact</p><p class="cover-meta-value">${d.contact_mail}<br>${d.contact_tel || ''}</p></div>` : ''}
+            </div>
+          </div>
+          <div class="cover-right">
+            <span class="cover-badge">${d.duree}</span>
+          </div>
+        </div>`;
+    }
+
+    // ——— Rendu du sommaire ———
+    function renderSommaire(sections) {
+      const items = sections.map((s, i) => `
+        <li><a href="#s${i}">
+          <span class="sommaire-num">${(i+1).toString().padStart(2,'0')}</span>
+          <span class="sommaire-name">${s.titre}</span>
+          <span class="sommaire-dots"></span>
+        </a></li>`).join('');
+      return `
+        <div class="rapport-sommaire">
+          <p class="sommaire-title">Sommaire</p>
+          <ul class="sommaire-list">${items}</ul>
+        </div>`;
+    }
+
+    // ——— Navigation sticky ———
+    function renderNav(sections) {
+      const nav = document.getElementById('rapportNav');
+      if (!nav) return;
+      nav.innerHTML = sections.map((s, i) =>
+        `<a href="#s${i}">${s.titre}</a>`
+      ).join('');
+
+      // Active link on scroll
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const id = e.target.id;
+            nav.querySelectorAll('a').forEach(a => {
+              a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+            });
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+
+      document.querySelectorAll('.rapport-anchor').forEach(el => observer.observe(el));
+    }
+
+    // ——— Main render ———
+    function render(data) {
+      document.title = `${data.titre} — Tom Esnault`;
+
+      const container = document.getElementById('rapportContainer');
+      let html = renderCover(data);
+      html += renderSommaire(data.sections);
+      html += '<div class="rapport-body">';
+      data.sections.forEach((s, i) => {
+        const fn = renderers[s.type];
+        html += fn ? fn(s, i) : `<div class="rapport-bloc rapport-anchor" id="s${i}"><div class="rapport-bloc-header"><h2 class="rapport-bloc-titre">${s.titre}</h2></div></div>`;
+      });
+      html += '</div>';
+      container.innerHTML = html;
+
+      renderNav(data.sections);
+    }
+
+    // ——— Chargement du bon rapport selon ?id ———
+    function loadRapport() {
+      const param = location.search.slice(1) || location.hash.slice(1);
+      if (!param) {
+        document.getElementById('rapportContainer').innerHTML =
+          '<p style="text-align:center;color:var(--color-mid);padding:60px 0;">Aucun rapport spécifié.</p>';
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = `rapports/${param}.js`;
+      script.onload = function() {
+        if (window.RAPPORT_DATA) render(window.RAPPORT_DATA);
+      };
+      script.onerror = function() {
+        document.getElementById('rapportContainer').innerHTML =
+          '<p style="text-align:center;color:var(--color-mid);padding:60px 0;">Rapport introuvable.</p>';
+      };
+      document.head.appendChild(script);
+    }
+
+    document.addEventListener('DOMContentLoaded', loadRapport);
+  })();
+  </script>
+</body>
+</html>
