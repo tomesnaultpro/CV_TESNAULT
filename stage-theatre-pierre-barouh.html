@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Théâtre Pierre Barouh — Tom Esnault</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+
+    /* =====================================================
+       PAGE COUVERTURE
+    ===================================================== */
+    .cover-page {
+      min-height: calc(100vh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-bg);
+      padding: 60px 40px;
+    }
+    .cover-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-top: 5px solid var(--color-dark);
+      border-radius: var(--radius-lg);
+      padding: 64px 72px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+    .cover-label {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-mid);
+      margin-bottom: 24px;
+    }
+    .cover-title {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .cover-subtitle {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: normal;
+      color: var(--color-text-2);
+      margin-bottom: 40px;
+    }
+    .cover-divider {
+      width: 40px;
+      height: 2px;
+      background: var(--color-dark);
+      margin: 0 auto 36px;
+    }
+    .cover-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 32px;
+      text-align: left;
+      margin-bottom: 44px;
+    }
+    .cover-meta-item {}
+    .cover-meta-label {
+      font-size: 0.6rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--color-mid);
+      margin-bottom: 3px;
+    }
+    .cover-meta-value {
+      font-size: 0.82rem;
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+    .cover-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--color-dark);
+      color: var(--color-white);
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      transition: background 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .cover-btn:hover { background: var(--color-dark-2); }
+    .cover-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
+
+    .cover-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--color-mid);
+      margin-bottom: 32px;
+      transition: color 0.15s;
+    }
+    .cover-back:hover { color: var(--color-dark); }
+
+    /* =====================================================
+       RAPPORT — affiché après clic
+    ===================================================== */
+    #rapport {
+      display: none;
+      background: var(--color-bg);
+      padding: 52px 40px 96px;
+    }
+    #rapport.visible { display: block; }
+
+    .rapport-inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .rapport-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.68rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--color-dark);
+      margin-bottom: 32px;
+      cursor: pointer;
+      transition: gap 0.2s;
+    }
+    .rapport-back:hover { gap: 13px; }
+
+    /* Sommaire */
+    .sommaire {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 26px 34px;
+      margin-bottom: 24px;
+    }
+    .sommaire-titre {
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-mid);
+      margin-bottom: 14px;
+    }
+    .sommaire ul { list-style: none; padding: 0; }
+    .sommaire li a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 0;
+      font-size: 0.8rem;
+      color: var(--color-text-2);
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s;
+    }
+    .sommaire li a:hover { color: var(--color-dark); }
+    .s-n { font-family: var(--font-serif); color: var(--color-mid); font-size: .7rem; min-width: 18px; }
+    .s-d { flex: 1; border-bottom: 1px dotted var(--color-border); height: 1px; align-self: center; }
+
+    /* Blocs de contenu */
+    .bloc {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 18px;
+      scroll-margin-top: 88px;
+    }
+    .bloc-head {
+      padding: 22px 34px 18px;
+      border-bottom: 1px solid var(--color-bg);
+    }
+    .bloc-num {
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-mid);
+      margin-bottom: 3px;
+    }
+    .bloc-h {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: normal;
+      color: var(--color-dark);
+    }
+    .bloc-body { padding: 26px 34px; }
+
+    /* Texte commun */
+    .bloc-body p,
+    .zone p,
+    .activite p {
+      font-size: 0.82rem;
+      color: var(--color-text-2);
+      line-height: 1.85;
+      margin-bottom: 12px;
+    }
+    .bloc-body p:last-child,
+    .zone p:last-child,
+    .activite p:last-child { margin-bottom: 0; }
+
+    .bloc-body strong,
+    .zone strong,
+    .activite strong {
+      color: var(--color-dark);
+      font-weight: normal;
+      border-bottom: 1px solid rgba(61,76,65,.22);
+    }
+
+    .bloc-body ol,
+    .bloc-body ul {
+      padding-left: 20px;
+      font-size: 0.82rem;
+      color: var(--color-text-2);
+      line-height: 1.85;
+      margin-bottom: 12px;
+    }
+    .bloc-body li { margin-bottom: 4px; }
+
+    h3.sh {
+      font-family: var(--font-serif);
+      font-size: 0.93rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      margin: 0 0 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-bg);
+    }
+    h4.sh4 {
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      margin: 16px 0 7px;
+    }
+
+    /* Zones internes séparées */
+    .zone {
+      padding: 20px 34px;
+      border-top: 1px solid var(--color-bg);
+    }
+
+    /* Items liste (locaux) */
+    .local {
+      padding: 16px 34px;
+      border-top: 1px solid var(--color-bg);
+    }
+    .local-titre {
+      font-family: var(--font-serif);
+      font-size: 0.87rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      margin-bottom: 6px;
+    }
+
+    /* Activités */
+    .activite {
+      padding: 22px 34px;
+      border-top: 1px solid var(--color-bg);
+    }
+    .activite-titre {
+      font-family: var(--font-serif);
+      font-size: 0.93rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      margin-bottom: 12px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--color-bg);
+    }
+
+    /* Étapes numérotées */
+    .etape-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .etape-n {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--color-dark);
+      color: var(--color-white);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif);
+      font-size: .85rem;
+      flex-shrink: 0;
+    }
+    .etape-titre {
+      font-family: var(--font-serif);
+      font-size: 0.97rem;
+      font-weight: normal;
+      color: var(--color-dark);
+    }
+
+    /* Images */
+    .imgs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0 2px;
+    }
+    .imgs img {
+      border-radius: var(--radius);
+      border: 1px solid var(--color-border);
+      max-height: 210px;
+      object-fit: cover;
+      flex: 1;
+      min-width: 110px;
+    }
+    .imgs.full img {
+      max-height: none;
+      width: 100%;
+      object-fit: contain;
+      flex: none;
+    }
+    .imgs.center {
+      justify-content: center;
+    }
+    .imgs.center img {
+      flex: 0;
+      max-width: 180px;
+      height: 155px;
+      object-fit: contain;
+    }
+
+    /* Tableau DMX */
+    .dmx {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .77rem;
+      margin: 12px 0;
+    }
+    .dmx th {
+      background: var(--color-dark);
+      color: var(--color-white);
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: normal;
+      font-size: .68rem;
+      letter-spacing: .5px;
+    }
+    .dmx td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--color-bg);
+      color: var(--color-text-2);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .dmx tr:nth-child(even) td { background: #f9f9f9; }
+    .dmx td:first-child { font-family: var(--font-serif); color: var(--color-dark); width: 42px; }
+    .dmx td:nth-child(2) { color: var(--color-text); width: 150px; white-space: nowrap; }
+
+    /* Bilan */
+    .bilan {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--color-bg);
+    }
+    .bilan-col { background: var(--color-white); padding: 24px 28px; }
+    .bilan-titre {
+      font-family: var(--font-serif);
+      font-size: .88rem;
+      font-weight: normal;
+      color: var(--color-dark);
+      margin-bottom: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .cover-card { padding: 40px 28px; }
+      .cover-title { font-size: 1.8rem; }
+      .cover-meta { grid-template-columns: 1fr; gap: 14px; }
+      #rapport { padding: 32px 18px 72px; }
+      .bloc-head, .bloc-body, .zone, .local, .activite { padding-left: 18px; padding-right: 18px; }
+      .bilan { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .imgs img { max-height: 160px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">
+    <span class="nav-brand-name">Tom Esnault</span>
+    <span class="nav-brand-sub">Portfolio</span>
+  </a>
+  <button class="nav-burger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="experience.html" class="active">Expérience</a>
+    <a href="projet.html">Projet</a>
+    <a href="association.html">Association</a>
+  </div>
+</nav>
+
+
+<!-- =====================================================
+     PAGE 1 — COUVERTURE
+===================================================== -->
+<div id="cover" class="cover-page">
+  <div style="width:100%; max-width:600px; margin:0 auto;">
+
+    <a href="experience.html" class="cover-back">&#8592; Retour aux expériences</a>
+
+    <div class="cover-card">
+      <p class="cover-label">Rapport de stage — PFMP 1</p>
+      <h1 class="cover-title">Théâtre<br>Pierre Barouh</h1>
+      <p class="cover-subtitle">Période de Formation en Milieu Professionnel</p>
+      <div class="cover-divider"></div>
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <p class="cover-meta-label">Période</p>
+          <p class="cover-meta-value">25 nov. – 20 déc. 2024</p>
+        </div>
+        <div class="cover-meta-item">
+          <p class="cover-meta-label">Durée</p>
+          <p class="cover-meta-value">4 semaines</p>
+        </div>
+        <div class="cover-meta-item">
+          <p class="cover-meta-label">Maître de stage</p>
+          <p class="cover-meta-value">Benjamin Lavallard</p>
+        </div>
+        <div class="cover-meta-item">
+          <p class="cover-meta-label">Lieu</p>
+          <p class="cover-meta-value">Les Herbiers, Vendée</p>
+        </div>
+        <div class="cover-meta-item">
+          <p class="cover-meta-label">Mail</p>
+          <p class="cover-meta-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b1d39fddd0c7d0ddddd0c3d5f1ddd4c2d9d4c3d3d8d4c3c29fd7c3">[email&#160;protected]</a></p>
+        </div>
+        <div class="cover-meta-item">
+          <p class="cover-meta-label">Téléphone</p>
+          <p class="cover-meta-value">06 03 85 13 90</p>
+        </div>
+      </div>
+      <button class="cover-btn" onclick="ouvrirRapport()">
+        Lire le rapport
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =====================================================
+     PAGE 2 — RAPPORT COMPLET
+===================================================== -->
+<div id="rapport">
+<div class="rapport-inner">
+
+  <span class="rapport-back" onclick="retourCouverture()">&#8592; Retour à la couverture</span>
+
+  <!-- SOMMAIRE -->
+  <div class="sommaire">
+    <p class="sommaire-titre">Sommaire</p>
+    <ul>
+      <li><a href="#s1"><span class="s-n">01</span><span>Remerciements</span><span class="s-d"></span></a></li>
+      <li><a href="#s2"><span class="s-n">02</span><span>Présentation de l'entreprise</span><span class="s-d"></span></a></li>
+      <li><a href="#s3"><span class="s-n">03</span><span>Les locaux et leurs fonctionnements</span><span class="s-d"></span></a></li>
+      <li><a href="#s4"><span class="s-n">04</span><span>Activités réalisées et observées</span><span class="s-d"></span></a></li>
+      <li><a href="#s5"><span class="s-n">05</span><span>Étude de cas — Les Odyssées</span><span class="s-d"></span></a></li>
+      <li><a href="#s6"><span class="s-n">06</span><span>Conclusion</span><span class="s-d"></span></a></li>
+    </ul>
+  </div>
+
+
+  <!-- ————————————————————————————
+       S1 — REMERCIEMENTS
+  ———————————————————————————— -->
+  <div class="bloc" id="s1">
+    <div class="bloc-head">
+      <p class="bloc-num">Section 01</p>
+      <h2 class="bloc-h">Remerciements</h2>
+    </div>
+    <div class="bloc-body">
+      <p>Je remercie le service des ressources humaines de la ville des Herbiers pour avoir retenu ma candidature et m'avoir permis d'effectuer le stage qui me tenait à cœur.</p>
+      <p>Je remercie toute l'équipe du centre culturel du théâtre Pierre Barouh et de la Tour des Arts pour leur gentillesse, leur accompagnement, leur bienveillance et leur confiance. J'ai été tout de suite bien intégré à l'équipe. Ils m'ont permis de découvrir des métiers du spectacle, de réaliser des tâches en équipe ou seul, de mettre en application des connaissances et compétences acquises dans ma scolarité. Ils m'ont aussi beaucoup appris, en prenant le temps de bien m'expliquer et de répondre à mes questions.</p>
+      <p>Je remercie plus particulièrement M. Benjamin LAVALLARD, mon maître de stage, pour sa disponibilité et son partage. Il m'a guidé et encouragé dans mes pratiques, mes projets. Il a compris mes attentes et ma motivation, en me proposant d'assister aux spectacles le soir ou le dimanche. J'ai beaucoup apprécié observer l'aboutissement de toutes nos réalisations de la journée.</p>
+      <p>Je remercie également tous les intermittents du spectacle que j'ai pu côtoyer. Ils ont eu confiance en moi et en mes capacités. Je les remercie pour les moments d'échanges qui m'ont permis d'avancer dans mon orientation professionnelle.</p>
+    </div>
+  </div>
+
+
+  <!-- ————————————————————————————
+       S2 — PRÉSENTATION
+  ———————————————————————————— -->
+  <div class="bloc" id="s2">
+    <div class="bloc-head">
+      <p class="bloc-num">Section 02</p>
+      <h2 class="bloc-h">Présentation de l'entreprise</h2>
+    </div>
+
+    <div class="zone">
+      <h3 class="sh">Du début à aujourd'hui</h3>
+      <p>Le théâtre Pierre Barouh, dans l'espace Herbauges, et la Tour des Arts font partie des centres culturels des Herbiers. Ils sont tous deux situés dans le centre de la ville. Le théâtre Pierre Barouh a été créé à partir d'un supermarché Super U en 1994. Il permet d'accueillir plus de 460 personnes, pour des spectacles et des réunions en tout genre. Depuis sa création, il a accueilli plus de 1 200 représentations, 820 compagnies et 500 000 spectateurs.</p>
+      <p>En 2018, de gros travaux ont été effectués au théâtre pour le passage aux LED, la mise en place de nouveaux sièges dans les gradins et l'installation d'une nouvelle scène. Inaugurée en 2011, la Tour des Arts héberge l'école de musique des Herbiers. Chaque semaine, plus de 400 élèves s'y rendent pour faire leurs gammes. La Tour des Arts dispose aussi d'un auditorium William Christie pouvant accueillir plus de 144 personnes.</p>
+    </div>
+
+    <div class="zone">
+      <h3 class="sh">Localisation</h3>
+      <div class="imgs full">
+        <img src="images/theatre/image93.png" alt="Carte de localisation du théâtre Pierre Barouh" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="zone">
+      <h3 class="sh">Organigramme</h3>
+      <div class="imgs full">
+        <img src="images/theatre/image56.png" alt="Organigramme du théâtre Pierre Barouh" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ————————————————————————————
+       S3 — LES LOCAUX
+  ———————————————————————————— -->
+  <div class="bloc" id="s3">
+    <div class="bloc-head">
+      <p class="bloc-num">Section 03</p>
+      <h2 class="bloc-h">Les locaux et leurs fonctionnements</h2>
+    </div>
+    <div class="bloc-body">
+      <p>Les locaux du théâtre Pierre Barouh sont organisés en plusieurs espaces distincts.</p>
+    </div>
+
+    <div class="local">
+      <p class="local-titre">Les Loges</p>
+      <p>Une loge est un lieu de vie pour les artistes. Elle leur permet de se préparer, de dormir et de regarder le spectacle en direct. C'est un lieu de bien-être pour les artistes avant de monter sur scène.</p>
+    </div>
+
+    <div class="local">
+      <p class="local-titre">La Scène</p>
+      <p>La scène de Pierre Barouh a une ouverture de 13,20 m et une profondeur de 10,20 m. Elle contient 14 perches à l'italienne, une perche fixe en passerelle à 3 m du cadre, 6 perches à l'américaine (une double perche parallèle à la scène) et 2 ponts en allemand (perpendiculaires à la scène).</p>
+      <div class="imgs">
+        <img src="images/theatre/image1.png" alt="Vue scène" loading="lazy"/>
+        <img src="images/theatre/image33.png" alt="Intérieur théâtre" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="local">
+      <p class="local-titre">La Régie</p>
+      <p>La régie, située en haut de l'auditorium, est face à la scène. C'est le centre de contrôle de l'audio, de la lumière et de la vidéo. La console son est <strong>une VI6 de SOUNDCRAFT</strong> et la console lumière est <strong>une GrandMA2 Light</strong>.</p>
+      <div class="imgs">
+        <img src="images/theatre/image31.jpg" alt="Console son" loading="lazy"/>
+        <img src="images/theatre/image77.jpg" alt="Console lumière" loading="lazy"/>
+        <img src="images/theatre/image43.jpg" alt="Vue régie" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="local">
+      <p class="local-titre">L'Espace employé</p>
+      <p>Les employés ont un grand espace en dessous des tribunes, avec une grande salle pour manger, se détendre et faire des réunions. Il y a aussi des petites pièces pour du matériel son et lumière, et une pièce avec des outils pour faire du bricolage.</p>
+    </div>
+
+    <div class="zone">
+      <h3 class="sh">Schéma de la scène</h3>
+      <div class="imgs full">
+        <img src="images/theatre/image32.png" alt="Schéma de la scène" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ————————————————————————————
+       S4 — ACTIVITÉS
+  ———————————————————————————— -->
+  <div class="bloc" id="s4">
+    <div class="bloc-head">
+      <p class="bloc-num">Section 04</p>
+      <h2 class="bloc-h">Activités réalisées et observées</h2>
+    </div>
+
+    <div class="activite">
+      <h3 class="activite-titre">Mise en place de la scène pour une réunion</h3>
+      <p>J'ai pu assister à la mise en place de la scène pour une réunion. Ils ont placé cinq projecteurs traditionnels avec une <strong>gélatine violette</strong> pour faire un fond violet et deux projecteurs avec un <strong>diffuseur</strong> pour un effet flou sur le sol. Pour obtenir une image à l'arrière, on a avancé une <strong>toile de projection</strong> de deux perches. Un ordinateur portable a été relié à un convertisseur avec un câble <strong>SDI</strong> pour convertir le <strong>SDI en HDMI</strong>, puis branché au vidéo projecteur.</p>
+      <div class="imgs">
+        <img src="images/theatre/image110.jpg" alt="Mise en place scène réunion" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="activite">
+      <h3 class="activite-titre">Utilisation d'une découpe à LED</h3>
+      <p>Lors d'une exposition pour les 30 ans du théâtre, une <strong>découpe à LED</strong> de la marque Robert Juliat a été reliée en <strong>DMX</strong> avec un <strong>XLR 5 branches</strong> à une <strong>console d'éclairage</strong> (Zéro 88 Jester 24/48). Avec les deux lentilles on pouvait régler le <strong>zoom</strong> et <strong>la diffusion de la lumière</strong>. Via les fadeurs : <strong>l'intensité</strong>, <strong>la couleur</strong> (rouge, vert, bleu, cyan, jaune) et le <strong>stroboscope</strong>. Mon but était de faire un triangle avec la couleur de mon choix.</p>
+      <div class="imgs">
+        <img src="images/theatre/image61.jpg" alt="Découpe à LED" loading="lazy"/>
+        <img src="images/theatre/image2.jpg" alt="Console éclairage" loading="lazy"/>
+        <img src="images/theatre/image28.jpg" alt="Matériel éclairage" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="activite">
+      <h3 class="activite-titre">Mise en place de tribunes</h3>
+      <p>Nous sommes allés chercher des tribunes pour <strong>une chorale de Noël</strong> dans le hangar à côté du théâtre. Elles étaient sur roulettes. Nous les avons positionnées jusqu'à la scène grâce à <strong>un monte-charge</strong>. Une fois montées, on les a mises à plat et en ligne, puis sécurisées avec <strong>des rambardes</strong>. On m'a demandé de mettre un <strong>rideau de fond</strong> devant les tribunes pour les cacher aux spectateurs.</p>
+      <div class="imgs">
+        <img src="images/theatre/image111.jpg" alt="Tribunes scène" loading="lazy"/>
+        <img src="images/theatre/image30.jpg" alt="Installation tribunes" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="activite">
+      <h3 class="activite-titre">Découverte du grill</h3>
+      <p>J'ai fait la visite du <strong>grill</strong> tout en haut de la scène, en passant par des échelles et deux passerelles. Côté cour (droite du public), des <strong>moteurs</strong> s'occupent <strong>des perches simples</strong>. Côté jardin, des moteurs pour <strong>les perches à l'américaine</strong>. À face et au lointain, les moteurs pour <strong>les ponts en façon allemande</strong>.</p>
+      <div class="imgs">
+        <img src="images/theatre/image98.jpg" alt="Grill du théâtre" loading="lazy"/>
+        <img src="images/theatre/image42.jpg" alt="Vue grill" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="activite">
+      <h3 class="activite-titre">Décoration pour Noël</h3>
+      <p>Pour Noël, j'ai fait une décoration à l'entrée de la salle. J'ai placé un tapis rouge, puis un vieux sapin blanc en bois des réserves. Pour le faire tenir, j'ai utilisé <strong>une brique de contrepoids</strong> et une barre en métal avec du <strong>rilsan</strong>. J'ai mis des cadeaux aux pieds des sapins et ajouté <strong>un mur de LED</strong> et des branchages derrière.</p>
+      <div class="imgs">
+        <img src="images/theatre/image67.jpg" alt="Décoration Noël" loading="lazy"/>
+        <img src="images/theatre/image107.jpg" alt="Sapins décorés" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="activite">
+      <h3 class="activite-titre">Rangement de projecteurs</h3>
+      <p>Durant le stage nous avons effectué beaucoup de rangements de projecteurs. Il faut les classer par type <strong>(pc, par64, découpe à LED et autres)</strong>. Ils sont accrochés sur les perches au quai avec <strong>des colliers à demi-lune</strong> et transportés sur des <strong>chariots multifonction</strong>. Des projecteurs spéciaux (<strong>PC 650</strong>) ou en flight case sont placés sous la scène dans des placards.</p>
+      <div class="imgs">
+        <img src="images/theatre/image39.jpg" alt="Projecteurs rangés" loading="lazy"/>
+        <img src="images/theatre/image112.jpg" alt="Rangement matériel" loading="lazy"/>
+        <img src="images/theatre/image106.jpg" alt="Projecteurs sur perche" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="activite">
+      <h3 class="activite-titre">Utilisation d'un pied de levage</h3>
+      <p>J'ai utilisé un <strong>pied de levage</strong> pour découvrir son fonctionnement. J'ai ouvert <strong>les quatre pieds</strong> et utilisé un <strong>niveau à bulle</strong> en tournant des <strong>manchons noirs</strong> pour le rendre stable, en équilibre et <strong>perpendiculaire au sol</strong>. Je n'ai pas eu le temps de le monter totalement. Je l'ai rangé en faisant attention à bien le plier.</p>
+      <div class="imgs">
+        <img src="images/theatre/image55.jpg" alt="Pied de levage" loading="lazy"/>
+        <img src="images/theatre/image9.jpg" alt="Utilisation pied levage" loading="lazy"/>
+        <img src="images/theatre/image60.jpg" alt="Détail pied levage" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="activite">
+      <h3 class="activite-titre">Changement de place de pendrillons et de frises</h3>
+      <p>Pour un spectacle j'ai dû changer le placement de <strong>frises</strong> et de <strong>pendrillons</strong>. Les pendrillons sont en <strong>velours</strong> et servent à cacher les coulisses et le matériel technique. Ils sont attachés avec <strong>des nouettes</strong> à <strong>des sous-perches</strong>. J'ai décalé les sous-perches au bon marquage (6,5 m), fait des retours aux extrémités, puis <strong>appuyé</strong> (monté) la perche en vérifiant l'absence de vagues.</p>
+      <p>J'ai bougé des frises d'une perche à une autre pour cacher les projecteurs, en faisant attention à ne pas toucher le côté velours pour ne pas la salir.</p>
+      <div class="imgs">
+        <img src="images/theatre/image3.png" alt="Pendrillons et frises" loading="lazy"/>
+        <img src="images/theatre/image37.png" alt="Placement frises" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="activite">
+      <h3 class="activite-titre">Préparation d'une installation pour un loto</h3>
+      <p>Pour un loto, j'ai installé une petite régie avec en entrée un <strong>micro HF</strong> et un micro câblé en <strong>XLR</strong>. En sortie, deux enceintes sur <strong>trépieds</strong> reliées en <strong>Jack 6,35 mm</strong>. Mon maître de stage a paramétré le micro HF sur la <strong>console son</strong>. Je n'avais plus qu'à tester les micros pendant qu'il réglait le <strong>gain audio</strong>.</p>
+      <div class="imgs">
+        <img src="images/theatre/image35.jpg" alt="Installation loto" loading="lazy"/>
+        <img src="images/theatre/image96.jpg" alt="Régie loto" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="activite">
+      <h3 class="activite-titre">Projecteur dans l'auditorium de la Tour des Arts</h3>
+      <p>J'ai participé à la mise en place d'un <strong>PAR LED</strong>. Nous l'avons positionné sur <strong>le pont</strong>, fixé avec une accroche <strong>demi-lune</strong>, puis câblé en DMX. J'ai mis l'adresse (321) en <strong>mode 9 canaux</strong> et utilisé un <strong>contrôleur DMX</strong> pour tester. J'ai ensuite testé les huit adresses suivantes (couleurs et effets). Tout fonctionnait, nous avons monté le pont avec des moteurs.</p>
+      <div class="imgs">
+        <img src="images/theatre/image103.jpg" alt="PAR LED auditorium" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="activite">
+      <h3 class="activite-titre">Projecteurs pour le spectacle « Le secret des secrets »</h3>
+      <p>J'ai placé des projecteurs sur la perche A (<strong>perche américaine</strong>) à partir d'un plan de feu : <strong>deux découpes à LED, trois pc 1 kw et trois PAR 64 cp 62</strong>. J'ai fixé les projecteurs en tirant les <strong>couteaux</strong> au maximum, branché les découpes en électricité et <strong>DMX</strong>. Pour les autres, j'ai utilisé des <strong>gradateurs</strong> (appareils qui font varier le courant, donc la luminosité). J'ai noté les adresses DMX, fixé les câbles avec des <strong>colliers belges</strong>, puis fixé les <strong>gélatines et diffuseurs</strong> grâce au <strong>porte-gélatines</strong> avant d'appuyer (monter) la perche.</p>
+      <div class="imgs">
+        <img src="images/theatre/image114.jpg" alt="Perche avec projecteurs" loading="lazy"/>
+        <img src="images/theatre/image41.jpg" alt="Installation projecteurs" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ————————————————————————————
+       S5 — ÉTUDE DE CAS
+  ———————————————————————————— -->
+  <div class="bloc" id="s5">
+    <div class="bloc-head">
+      <p class="bloc-num">Section 05</p>
+      <h2 class="bloc-h">Étude de cas — Les Odyssées</h2>
+    </div>
+
+    <div class="bloc-body">
+      <h3 class="sh">Mise en situation</h3>
+      <p>Durant mon stage, mon maître de stage m'a permis de faire toute <strong>l'implantation de l'éclairage</strong> du spectacle <em>Les Odyssées</em>, en utilisant <strong>la fiche technique</strong>. C'est un spectacle créé pour les enfants, avec un grand décor et plein de jeux de lumière dessus.</p>
+      <p>La compagnie avait besoin de <strong>deux univers</strong> différents : un pour tous les projecteurs à <strong>ampoule traditionnelle</strong>, un pour tous <strong>les projecteurs à LED</strong>. En cas de panne, ils pouvaient détecter facilement le projecteur mis en cause.</p>
+      <div class="imgs">
+        <img src="images/theatre/image29.png" alt="Fiche technique Les Odyssées" loading="lazy"/>
+      </div>
+      <p>J'ai réalisé quatre grandes étapes dans l'implantation de lumière :</p>
+      <ol>
+        <li>Placer les projecteurs sur leurs perches et les rendre opérationnels — un jour avant la représentation.</li>
+        <li>Réglage des projecteurs sur le décor et dans la console lumière (GrandMA2 Light) — cinq heures avant le spectacle.</li>
+        <li>La représentation — observation du régisseur lumière de la compagnie.</li>
+        <li>Le démontage de l'éclairage — juste après la représentation.</li>
+      </ol>
+    </div>
+
+    <!-- Étape 1 -->
+    <div class="activite">
+      <div class="etape-head">
+        <div class="etape-n">1</div>
+        <h3 class="etape-titre">Étape 1 — Implantation de l'éclairage</h3>
+      </div>
+      <p>J'ouvre la fiche technique et je trouve des <strong>plans de feu</strong> (plan avec l'emplacement de tous les projecteurs et du décor). Je repère les différents projecteurs et autre matériel (machine à fumée, pied lumière, platine et arrivées DMX). Je réunis tout le matériel.</p>
+      <p>Je commence par la perche numéro 1. Je la <strong>charge</strong> (descends). Grâce à une règle graduée avec le zéro au centre de la scène, je place trois <strong>découpes 613 de 1 kw</strong>, deux <strong>PC 1 kw</strong> et quatre <strong>MAC Aura Martin</strong>.</p>
+      <div class="imgs">
+        <img src="images/theatre/image76.jpg" alt="Plan de feu" loading="lazy"/>
+      </div>
+      <p>Je câble par univers. L'univers 2 pour les MAC Aura Martin, l'univers 1 pour les autres. Je branche les MAC Aura Martin en série via <strong>connectique XLR à 5 branches</strong> et les paramètre en <strong>mode basic</strong> (14 canaux DMX) avec les adresses : <strong>29, 43, 57, 71</strong>. Pour les autres projecteurs, j'utilise des <strong>gradateurs</strong> (adresses DMX : <strong>1 à 6</strong>). Je teste la perche avec le <strong>contrôleur DMX</strong>, tout fonctionne, <strong>j'appuie</strong> (monte) la perche.</p>
+      <div class="imgs">
+        <img src="images/theatre/image38.jpg" alt="Câblage perche 1" loading="lazy"/>
+        <img src="images/theatre/image22.jpg" alt="MAC Aura Martin" loading="lazy"/>
+      </div>
+      <p>Perche 4 : trois MAC Aura Martin (adresses <strong>85, 99 et 113</strong>). Perche américaine PD : deux PC 1 kw et deux découpes 613, gradateurs <strong>7 à 10</strong>.</p>
+      <p>Projecteurs au sol : six PAR 64 CP 60, deux découpes 613, six <strong>Oxo pixyline 18 FCW</strong> au fond de scène (adresses <strong>227, 241, 255, 269, 283 et 297</strong>). L'implantation est terminée.</p>
+      <div class="imgs">
+        <img src="images/theatre/image90.jpg" alt="Perche américaine" loading="lazy"/>
+        <img src="images/theatre/image52.jpg" alt="Projecteurs au sol" loading="lazy"/>
+        <img src="images/theatre/image57.jpg" alt="Plan d'implantation complet" loading="lazy"/>
+      </div>
+      <p>Dans le local avec <strong>la baie de patch</strong> et <strong>les splitters</strong> (multiprise DMX) : le <strong>DMX 2</strong> va sur le splitter 1 (entrées gradateurs), le <strong>DMX 3</strong> sur le splitter ajouté (entrées MAC Aura Martin).</p>
+      <div class="imgs">
+        <img src="images/theatre/image99.jpg" alt="Baie de patch" loading="lazy"/>
+        <img src="images/theatre/image102.jpg" alt="Splitters DMX" loading="lazy"/>
+      </div>
+    </div>
+
+    <!-- Étape 2 -->
+    <div class="activite">
+      <div class="etape-head">
+        <div class="etape-n">2</div>
+        <h3 class="etape-titre">Étape 2 — Réglage des projecteurs</h3>
+      </div>
+      <p>Le réglage se fait depuis une <strong>nacelle</strong> — je n'ai pas pu le faire, j'ai observé un <strong>intermittent du spectacle</strong>. Il sort au maximum tous <strong>les couteaux</strong> sur les découpes, <strong>règle le zoom</strong> et positionne le <strong>faisceau de lumière</strong> selon les indications du <strong>régisseur lumière</strong>.</p>
+      <p>Pour le réglage au sol, le régisseur utilise en régie <strong>une feuille de patch</strong> (feuille de correspondance des adresses DMX) pour faire correspondre nos adresses avec celles créées lors de la conception du spectacle.</p>
+      <p>Les <strong>comédiens</strong> arrivent. Le régisseur vérifie ses <strong>scènes de lumière</strong> et leurs <strong>transitions</strong> pendant que les comédiens s'entraînent sur scène.</p>
+      <div class="imgs">
+        <img src="images/theatre/image64.jpg" alt="Nacelle de réglage" loading="lazy"/>
+        <img src="images/theatre/image108.jpg" alt="Réglage projecteurs" loading="lazy"/>
+        <img src="images/theatre/image113.jpg" alt="Console lumière" loading="lazy"/>
+        <img src="images/theatre/image89.jpg" alt="Scènes lumière" loading="lazy"/>
+      </div>
+      <div class="imgs">
+        <img src="images/theatre/image104.jpg" alt="Vue d'ensemble scène" loading="lazy"/>
+        <img src="images/theatre/image109.jpg" alt="Décor Les Odyssées" loading="lazy"/>
+      </div>
+    </div>
+
+    <!-- Étape 3 -->
+    <div class="activite">
+      <div class="etape-head">
+        <div class="etape-n">3</div>
+        <h3 class="etape-titre">Étape 3 — La représentation</h3>
+      </div>
+      <p>Le spectacle commence... Je suis en régie derrière le régisseur lumière. Il a trois écrans : un avec tous ses projecteurs dans des cases, un avec la colorimétrie, un avec une frise de séquences. Avec le bouton go, il passe d'une séquence à l'autre. Il utilise la touche F3 pour une <strong>macro</strong> (défilement d'action) qui met tous les MAC Aura Martin en rouge.</p>
+      <p>Un décor n'a pas voulu s'enlever complètement. Via <strong>un casque HF</strong>, <strong>la régisseuse plateaux</strong> lui demande un noir complet un peu plus long pendant une transition. Il baisse le <strong>fader général au maximum</strong>.</p>
+      <div class="imgs">
+        <img src="images/theatre/image23.png" alt="Console pendant spectacle" loading="lazy"/>
+        <img src="images/theatre/image87.png" alt="Régie spectacle" loading="lazy"/>
+      </div>
+    </div>
+
+    <!-- Étape 4 -->
+    <div class="activite">
+      <div class="etape-head">
+        <div class="etape-n">4</div>
+        <h3 class="etape-titre">Étape 4 — Le démontage</h3>
+      </div>
+      <p>Une fois les spectateurs sortis, je débranche tous les projecteurs et range les câbles dans <strong>les racks de câbles</strong>. Je range les pieds de lumière et place chaque projecteur soit dans une <strong>flight case</strong> soit dans le local. Le démontage ne prend que deux heures — très court comparé à l'installation qui a duré deux jours.</p>
+    </div>
+
+    <!-- Schéma univers 2 -->
+    <div class="zone">
+      <h3 class="sh">Schéma de l'Univers 2</h3>
+      <div class="imgs full">
+        <img src="images/theatre/image88.png" alt="Schéma de l'univers 2 — câblage DMX" loading="lazy"/>
+      </div>
+    </div>
+
+    <!-- Interprétation -->
+    <div class="zone">
+      <h3 class="sh">Interprétation du schéma</h3>
+
+      <h4 class="sh4">La console GrandMA2 Light</h4>
+      <p>Elle agit comme le cerveau des projecteurs. Elle envoie des signaux DMX (<strong>Digital Multiplex</strong>) via huit sorties DMX512, norme internationale <strong>EIA-485</strong>. Elle encode <strong>14 canaux</strong> par projecteur. Il y a <strong>512 canaux</strong> par univers.</p>
+
+      <h4 class="sh4">Le splitter DMX</h4>
+      <p>Le splitter amplifie le signal DMX 512 reçu par câble XLR 5 broches. Il isole le signal électriquement pour éviter les interférences et le renvoie vers plusieurs sorties reliées aux perches.</p>
+
+      <h4 class="sh4">Les lignes DMX et les perches de projecteurs</h4>
+      <p>Les deux sorties DMX du splitter alimentent les perches 1 et 4. Les projecteurs sont connectés en série (daisy chain) via des câbles XLR 5 broches et alimentés par câble powercon. Chaque projecteur a une adresse spécifique (<strong>29, 43, 57, 71, 85, 99 et 113</strong>).</p>
+
+      <h4 class="sh4">Les projecteurs</h4>
+      <p>Les projecteurs convertissent le signal DMX en signal électrique via un <strong>décodeur DMX</strong> pour communiquer avec leurs composants internes (moteurs, LED, roue de couleurs). Chaque canal reçoit un nombre <strong>entre 0 et 255</strong>. Exemple : 255 sur le rouge et le bleu, 0 sur le vert = faisceau violet.</p>
+    </div>
+
+    <!-- Mac Aura Martin -->
+    <div class="zone">
+      <h3 class="sh">Pourquoi un projecteur Mac Aura Martin ?</h3>
+      <div class="imgs center">
+        <img src="images/theatre/image51.png" alt="MAC Aura Martin face" loading="lazy"/>
+        <img src="images/theatre/image73.png" alt="MAC Aura Martin côté" loading="lazy"/>
+        <img src="images/theatre/image16.png" alt="MAC Aura Martin vue" loading="lazy"/>
+      </div>
+
+      <h4 class="sh4">La technologie LED</h4>
+      <p>Le MAC Aura utilise des sources <strong>LED multicolores</strong>, avec une faible consommation d'énergie et une <strong>luminosité élevée</strong>. Les LED produisent très peu de chaleur et sont plus durables que les lampes halogènes.</p>
+
+      <h4 class="sh4">Des effets lumineux polyvalents</h4>
+      <p>Son système unique crée <strong>des halos de lumière colorée</strong> autour du faisceau principal. On peut contrôler chacune <strong>des LED indépendamment</strong>, ce qui permet une grande variété d'effets.</p>
+
+      <h4 class="sh4">La compatibilité avec le DMX512</h4>
+      <p>Le projecteur est 100 % compatible avec la norme DMX512. Ses 14 canaux permettent un contrôle détaillé :</p>
+
+      <table class="dmx">
+        <thead>
+          <tr><th>Canal</th><th>Fonction</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Dimmer</td><td>Contrôle global de l'intensité lumineuse.</td></tr>
+          <tr><td>2</td><td>Pan</td><td>Mouvement horizontal.</td></tr>
+          <tr><td>3</td><td>Pan fine</td><td>Ajustement précis du mouvement horizontal.</td></tr>
+          <tr><td>4</td><td>Tilt</td><td>Mouvement vertical.</td></tr>
+          <tr><td>5</td><td>Tilt fine</td><td>Ajustement précis du mouvement vertical.</td></tr>
+          <tr><td>6</td><td>Vitesse Pan/Tilt</td><td>Réglage de la vitesse des mouvements Pan/Tilt.</td></tr>
+          <tr><td>7</td><td>Couleur (Rouge)</td><td>Contrôle de la couleur rouge.</td></tr>
+          <tr><td>8</td><td>Couleur (Vert)</td><td>Contrôle de la couleur verte.</td></tr>
+          <tr><td>9</td><td>Couleur (Bleu)</td><td>Contrôle de la couleur bleue.</td></tr>
+          <tr><td>10</td><td>Couleur (Blanc)</td><td>Contrôle de la couleur blanche.</td></tr>
+          <tr><td>11</td><td>Zoom</td><td>Réglage de l'ouverture du faisceau lumineux.</td></tr>
+          <tr><td>12</td><td>Vitesse des effets</td><td>Contrôle de la vitesse des effets ou transitions.</td></tr>
+          <tr><td>13</td><td>Macros de couleur</td><td>Accès rapide à des couleurs prédéfinies (commandes préprogrammées).</td></tr>
+          <tr><td>14</td><td>Strobe</td><td>Effets de stroboscope (arrêt, vitesse réglable, effets aléatoires).</td></tr>
+        </tbody>
+      </table>
+
+      <h4 class="sh4">Rapport Poids/Taille</h4>
+      <p>Le projecteur est compact et léger, ce qui améliore le montage et le démontage. Sa conception limite les risques d'accident, de brûlure et de chute. Il est aussi robuste.</p>
+      <div class="imgs">
+        <img src="images/theatre/image81.png" alt="Dimensions MAC Aura Martin" loading="lazy"/>
+      </div>
+
+      <h4 class="sh4">Gestion de l'énergie</h4>
+      <p>Avec des connecteurs powercon, le projecteur respecte les normes actuelles. Il utilise <strong>entre 50 et 150 watts par heure</strong>, un atout majeur pour les grands événements.</p>
+
+      <h4 class="sh4">Réputation de la marque</h4>
+      <p>Le Mac Aura Martin appartient à la marque Martin by Harman, réputée pour la qualité et l'innovation dans le système d'éclairage professionnel.</p>
+    </div>
+
+    <!-- Bilan -->
+    <div class="bilan">
+      <div class="bilan-col">
+        <h3 class="bilan-titre">&#10003; Les réussites</h3>
+        <p>La plus grande réussite, c'est d'avoir participé activement au spectacle <em>Les Odyssées</em> et de constater que tout ce que j'ai installé a fonctionné durant la représentation, sans souci majeur. J'ai mis en pratique les compétences acquises en scolarité.</p>
+        <p>Cette étude de cas m'a permis d'améliorer mon travail en autonomie et de gagner confiance en moi. J'ai su demander de l'aide quand il le fallait et j'ai pris en compte les conseils des personnes plus expérimentées.</p>
+      </div>
+      <div class="bilan-col">
+        <h3 class="bilan-titre">&#9677; Les difficultés</h3>
+        <p>J'ai eu du mal à paramétrer les projecteurs Mac Aura Martin. Leur configuration s'est montrée complexe. En explorant les menus, j'ai trouvé la rubrique du mode 14 canaux et celle de l'adressage. Cela m'a demandé patience et concentration.</p>
+        <p>Une difficulté personnelle : formuler correctement des questions avec les bons termes techniques et m'adresser à la bonne personne. Pour mon prochain stage, je prévois de mieux préparer mes questions.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ————————————————————————————
+       S6 — CONCLUSION
+  ———————————————————————————— -->
+  <div class="bloc" id="s6">
+    <div class="bloc-head">
+      <p class="bloc-num">Section 06</p>
+      <h2 class="bloc-h">Conclusion</h2>
+    </div>
+    <div class="bloc-body">
+      <p>Ces quatre semaines ont été très remplies professionnellement, humainement et personnellement. Elles m'ont permis d'avancer sur mon projet professionnel dans les métiers de l'audiovisuel et d'en apprendre davantage.</p>
+      <p>J'ai vécu et appris les étapes de la construction d'un spectacle jusqu'à la représentation. J'ai développé ma patience, ma cohésion de groupe et ma capacité à apprendre. Ce stage m'a apporté du langage technique et des compétences techniques dans le domaine du théâtre et de l'audiovisuel en général.</p>
+      <p>Les conditions de travail ne sont pas toujours compatibles avec la vie personnelle ou la vie de famille. Les horaires ne se limitent pas à 9h–17h. On peut être amené à travailler un dimanche ou un soir si un spectacle est programmé. À la fin du spectacle, les techniciens doivent encore compter deux bonnes heures pour le démontage, parfois tard dans la nuit.</p>
+      <p>Lors de mon stage, j'ai côtoyé des employés de la Ville des Herbiers avec un travail bien défini et fixe, mais aussi des intermittents du spectacle dont l'emploi est fonction de la demande, moins sûr et moins stable.</p>
+      <p>Ce que j'ai apprécié c'est d'être dans un théâtre convivial, avec un univers rigoureux, et d'avoir participé à des activités très variées qui m'ont correspondu et dans lesquelles j'ai pu m'investir.</p>
+      <p>Ce que j'ai moins apprécié, c'est d'avoir des moments de creux puis aussitôt un grand rush.</p>
+      <p>J'ai compris que ce travail demande un investissement important, de l'énergie et des efforts physiques réguliers. Je dois continuer à faire du sport régulièrement.</p>
+    </div>
+  </div>
+
+</div><!-- /rapport-inner -->
+</div><!-- /rapport -->
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span class="footer-name">Tom Esnault</span>
+  <div class="footer-links">
+    <a href="index.html">Accueil</a>
+    <a href="experience.html">Expérience</a>
+  </div>
+</footer>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+<script>
+  function ouvrirRapport() {
+    document.getElementById('cover').style.display = 'none';
+    var r = document.getElementById('rapport');
+    r.classList.add('visible');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  functi
