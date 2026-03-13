@@ -118,6 +118,9 @@
       background: var(--color-bg);
       padding: 48px 40px 96px;
     }
+    #rapport.visible {
+      display: block;
+    }
     
 
     .rp {
@@ -341,7 +344,7 @@
         </div>
         <div>
           <p class="cover-meta-label">Mail</p>
-          <p class="cover-meta-value">steward.souppaya@grandfinale.fr</p>
+          <p class="cover-meta-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6714130210061503491408121717061e06270015060903010e09060b02490115">[email&#160;protected]</a></p>
         </div>
         <div>
           <p class="cover-meta-label">Téléphone</p>
@@ -693,7 +696,7 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
 <script>
   function ouvrirRapport() {
     document.getElementById('cover').style.display = 'none';
@@ -703,7 +706,8 @@
   }
 
   function retourCouverture() {
-    document.getElementById('rapport').classList.remove('visible');
+    var r = document.getElementById('rapport');
+    r.classList.remove('visible');
     document.getElementById('cover').style.display = 'flex';
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
