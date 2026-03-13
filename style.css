@@ -24,7 +24,7 @@
   --radius-lg: 6px;
   --trans:     all 0.2s ease;
 
-  --max-w:    1080px;
+  --max-w:    900px;
   --nav-h:    68px;
 }
 
@@ -155,23 +155,38 @@ img { max-width:100%; display:block; }
 /* ——————————————————————————————————————
    MAIN CONTENT WRAPPER
 —————————————————————————————————————— */
-.page-wrapper {
+.page-wrapper,
+.page-wrap {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 60px 48px 96px;
+  padding: 56px 48px 96px;
+}
+
+/* Section blocks */
+.section-block {
+  margin-bottom: 52px;
+}
+.section-block:last-child { margin-bottom: 0; }
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 22px;
 }
 
 /* ——————————————————————————————————————
    SECTION TITLES
 —————————————————————————————————————— */
-.section-header {
+.section-header,
+.section-head {
   display: flex;
   align-items: baseline;
   gap: 14px;
-  margin-bottom: 26px;
-  margin-top: 60px;
+  margin-bottom: 22px;
+  margin-top: 52px;
 }
-.section-header:first-child { margin-top: 0; }
+.section-header:first-child, .section-head:first-child { margin-top: 0; }
 
 .section-num {
   font-family: var(--font-serif);
@@ -194,8 +209,8 @@ img { max-width:100%; display:block; }
 —————————————————————————————————————— */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
 /* ——————————————————————————————————————
@@ -205,7 +220,7 @@ img { max-width:100%; display:block; }
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 24px;
+  padding: 26px 28px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -642,7 +657,7 @@ img { max-width:100%; display:block; }
 
   .page-hero { padding: 38px 22px 30px; }
   .page-hero h1 { font-size: 1.75rem; }
-  .page-wrapper { padding: 36px 22px 64px; }
+  .page-wrapper, .page-wrap { padding: 36px 22px 64px; }
 
   .cards-grid { grid-template-columns: 1fr 1fr; }
   .skills-grid { grid-template-columns: 1fr 1fr; }
