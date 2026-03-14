@@ -6,56 +6,166 @@
   <title>Vidéo pour la PO — Tom Esnault</title>
   <link rel="stylesheet" href="../style.css"/>
   <style>
+    /* ── Layout ─────────────────────────────── */
     .rapport-wrap { display: block !important; }
-    #rapport { display: block !important; background: var(--color-bg); padding: 48px 40px 96px; }
+    #rapport {
+      display: block !important;
+      background: var(--color-bg);
+      padding: 48px 40px 96px;
+    }
     .rp { max-width: 820px; margin: 0 auto; }
 
-    /* Sommaire */
-    .sommaire { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px 32px; margin-bottom: 20px; }
-    .sommaire-h { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-mid); margin-bottom: 14px; }
+    /* ── Sommaire ────────────────────────────── */
+    .sommaire {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 24px 32px;
+      margin-bottom: 20px;
+    }
+    .sommaire-h {
+      font-size: 0.6rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--color-mid); margin-bottom: 14px;
+    }
     .sommaire ul { list-style: none; padding: 0; }
-    .sommaire li a { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-size: 0.79rem; color: var(--color-text-2); transition: color 0.15s; }
+    .sommaire li a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 5px 0; font-size: 0.79rem; color: var(--color-text-2);
+      transition: color 0.15s;
+    }
     .sommaire li a:hover { color: var(--color-dark); }
     .s-n { font-family: var(--font-serif); color: var(--color-mid); font-size: .68rem; min-width: 18px; }
     .s-d { flex: 1; border-bottom: 1px dotted var(--color-border); height: 1px; align-self: center; }
 
-    /* Blocs */
-    .bloc { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 16px; scroll-margin-top: 88px; }
+    /* ── Blocs ───────────────────────────────── */
+    .bloc {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 16px;
+      scroll-margin-top: 88px;
+    }
     .bloc-head { padding: 20px 32px 16px; border-bottom: 1px solid var(--color-bg); }
-    .bloc-num { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-mid); margin-bottom: 3px; }
-    .bloc-h { font-family: var(--font-serif); font-size: 1.1rem; font-weight: normal; color: var(--color-dark); }
+    .bloc-num {
+      font-size: 0.6rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--color-mid); margin-bottom: 3px;
+    }
+    .bloc-h {
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-weight: normal; color: var(--color-dark);
+    }
     .bloc-body { padding: 22px 32px; }
-    .bloc-body p, .zone p, .face p { font-size: 0.82rem; color: var(--color-text-2); line-height: 1.85; margin-bottom: 12px; }
-    .bloc-body p:last-child, .zone p:last-child, .face p:last-child { margin-bottom: 0; }
-    .bloc-body strong, .zone strong, .face strong { color: var(--color-dark); font-weight: normal; }
-    .bloc-body ul { padding-left: 20px; font-size: 0.82rem; color: var(--color-text-2); line-height: 1.85; margin-bottom: 12px; }
-    .bloc-body li { margin-bottom: 6px; }
+    .bloc-body p {
+      font-size: 0.82rem; color: var(--color-text-2);
+      line-height: 1.85; margin-bottom: 12px;
+    }
+    .bloc-body p:last-child { margin-bottom: 0; }
+    .bloc-body strong { color: var(--color-dark); font-weight: normal; }
 
-    /* Sous-sections */
-    h3.sh { font-family: var(--font-serif); font-size: 0.92rem; font-weight: normal; color: var(--color-dark); margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--color-bg); }
+    /* ── Zone (sous-section) ─────────────────── */
     .zone { padding: 20px 32px; border-top: 1px solid var(--color-bg); }
+    .zone p {
+      font-size: 0.82rem; color: var(--color-text-2);
+      line-height: 1.85; margin-bottom: 10px;
+    }
+    .zone p:last-child { margin-bottom: 0; }
+    .zone strong { color: var(--color-dark); font-weight: normal; }
+    h3.sh {
+      font-family: var(--font-serif); font-size: 0.92rem;
+      font-weight: normal; color: var(--color-dark);
+      margin: 0 0 12px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-bg);
+    }
 
-    /* Faces (équivalent act pour les rapports) */
-    .face { padding: 20px 32px; border-top: 1px solid var(--color-bg); }
-    .face-h { font-family: var(--font-serif); font-size: 0.9rem; font-weight: normal; color: var(--color-dark); margin-bottom: 12px; padding-bottom: 7px; border-bottom: 1px solid var(--color-bg); }
+    /* ── Métadonnées projet ───────────────────── */
+    .projet-meta {
+      display: flex; flex-wrap: wrap; gap: 0;
+      border-top: 1px solid var(--color-bg);
+    }
+    .meta-item {
+      display: flex; flex-direction: column; gap: 4px;
+      padding: 14px 28px;
+      border-right: 1px solid var(--color-bg);
+      flex: 1 1 160px;
+    }
+    .meta-item:last-child { border-right: none; }
+    .meta-label {
+      font-size: 0.58rem; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--color-mid);
+    }
+    .meta-value {
+      font-size: 0.78rem; color: var(--color-dark);
+      font-family: var(--font-serif); line-height: 1.4;
+    }
 
-    /* Vidéos */
-    .video-wrap { margin: 14px 0 6px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--color-border); background: #111; }
-    .video-wrap video { width: 100%; display: block; max-height: 420px; background: #111; }
-    .video-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--color-mid); margin-top: 6px; }
+    /* ── Intro faces ─────────────────────────── */
+    .faces-intro {
+      padding: 16px 32px;
+      border-top: 1px solid var(--color-bg);
+    }
+    .faces-intro p {
+      font-size: 0.79rem; color: var(--color-text-2); line-height: 1.8; margin: 0;
+    }
 
-    /* Grille 2 vidéos côte à côte */
-    .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0 6px; }
-    .video-grid .video-wrap { margin: 0; }
+    /* ── Grille 2×2 des faces ────────────────── */
+    .faces-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--color-bg);
+      border-top: 1px solid var(--color-bg);
+    }
+    .face-cell {
+      background: var(--color-white);
+      padding: 20px 24px 22px;
+    }
+    /* Face 5 : pleine largeur si seule sur sa ligne */
+    .face-cell:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
 
-    /* Tags outils */
-    .tool-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-    .tool-tag { font-size: 0.68rem; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 4px 10px; color: var(--color-text-2); letter-spacing: 0.3px; }
+    /* Badge numéroté */
+    .face-num {
+      display: flex; align-items: center; gap: 9px;
+      margin-bottom: 12px;
+    }
+    .face-badge {
+      width: 24px; height: 24px; flex-shrink: 0;
+      background: var(--color-dark); color: var(--color-white);
+      border-radius: 50%;
+      font-size: 0.63rem; font-family: var(--font-serif);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .face-title {
+      font-family: var(--font-serif); font-size: 0.84rem;
+      font-weight: normal; color: var(--color-dark);
+    }
+
+    /* ── Lecteur vidéo ───────────────────────── */
+    .vplayer {
+      width: 100%;
+      display: block;
+      border-radius: var(--radius);
+      border: 1px solid var(--color-border);
+      background: #0d0d0d;
+    }
+
+    /* ── Simulation plein bloc ───────────────── */
+    .simu-wrap {
+      padding: 0 32px 28px;
+      border-top: 1px solid var(--color-bg);
+      padding-top: 20px;
+    }
 
     @media (max-width: 768px) {
       #rapport { padding: 28px 18px 72px; }
-      .bloc-head, .bloc-body, .zone, .face { padding-left: 18px; padding-right: 18px; }
-      .video-grid { grid-template-columns: 1fr; }
+      .bloc-head, .bloc-body, .zone,
+      .faces-intro, .simu-wrap { padding-left: 18px; padding-right: 18px; }
+      .face-cell { padding-left: 18px; padding-right: 18px; }
+      .faces-grid { grid-template-columns: 1fr; }
+      .face-cell:last-child:nth-child(odd) { grid-column: auto; }
+      .meta-item { padding: 12px 18px; }
     }
   </style>
 </head>
@@ -85,7 +195,7 @@
     <ul>
       <li><a href="#s1"><span class="s-n">01</span><span>Présentation du projet</span><span class="s-d"></span></a></li>
       <li><a href="#s2"><span class="s-n">02</span><span>Les faces de la caisse</span><span class="s-d"></span></a></li>
-      <li><a href="#s3"><span class="s-n">03</span><span>Simulation PC — rendu final</span><span class="s-d"></span></a></li>
+      <li><a href="#s3"><span class="s-n">03</span><span>Simulation — rendu final</span><span class="s-d"></span></a></li>
     </ul>
   </div>
 
@@ -96,24 +206,34 @@
       <p class="bloc-num">Section 01</p>
       <h2 class="bloc-h">Présentation du projet</h2>
     </div>
+
     <div class="bloc-body">
       <p>Pour les portes ouvertes de notre lycée <strong>Saint Gabriel</strong>, nous avons réalisé un <strong>mapping vidéo</strong> en utilisant le logiciel <strong>Millumin</strong>. Chaque vidéo correspondait à une face d'une caisse, préparée grâce au logiciel <strong>DaVinci Resolve</strong>. Le mapping a été synchronisé avec la musique <strong>David Guetta – Dangerous</strong> pour un rendu immersif et dynamique.</p>
-      <div class="tool-tags">
-        <span class="tool-tag">Millumin</span>
-        <span class="tool-tag">DaVinci Resolve</span>
-        <span class="tool-tag">Mapping vidéo</span>
-        <span class="tool-tag">Portes ouvertes</span>
-        <span class="tool-tag">David Guetta – Dangerous</span>
+    </div>
+
+    <!-- Ligne de métadonnées -->
+    <div class="projet-meta">
+      <div class="meta-item">
+        <span class="meta-label">Mapping</span>
+        <span class="meta-value">Millumin</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Montage</span>
+        <span class="meta-value">DaVinci Resolve</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Musique</span>
+        <span class="meta-value">David Guetta – Dangerous</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Contexte</span>
+        <span class="meta-value">Portes ouvertes · Saint Gabriel</span>
       </div>
     </div>
+
     <div class="zone">
       <h3 class="sh">Principe du mapping vidéo</h3>
-      <p>Le <strong>mapping vidéo</strong> (ou projection mapping) consiste à projeter des contenus vidéo sur des surfaces en volume — ici une caisse — de manière à ce que chaque face reçoive une projection parfaitement alignée. Chaque face est traitée indépendamment dans le logiciel de montage, puis toutes les vidéos sont synchronisées et pilotées en temps réel par <strong>Millumin</strong>.</p>
-      <ul>
-        <li><strong>DaVinci Resolve</strong> — création et montage de chaque vidéo de face</li>
-        <li><strong>Millumin</strong> — gestion du mapping et synchronisation avec la musique</li>
-        <li><strong>Projection</strong> — diffusion en temps réel lors de l'événement</li>
-      </ul>
+      <p>Le <strong>mapping vidéo</strong> consiste à projeter des contenus vidéo sur des surfaces en volume de façon à ce que chaque face reçoive une projection parfaitement alignée. Chaque face de la caisse a été préparée indépendamment dans <strong>DaVinci Resolve</strong>, puis toutes les vidéos ont été synchronisées et pilotées en temps réel par <strong>Millumin</strong> lors de l'événement.</p>
     </div>
   </div>
 
@@ -125,61 +245,63 @@
       <h2 class="bloc-h">Les faces de la caisse</h2>
     </div>
 
-    <div class="face">
-      <h3 class="face-h">Face 1</h3>
-      <div class="video-wrap">
-        <video controls preload="metadata">
+    <div class="faces-intro">
+      <p>Chaque vidéo correspond à une face distincte de la caisse, conçue pour être projetée simultanément grâce au mapping.</p>
+    </div>
+
+    <div class="faces-grid">
+
+      <div class="face-cell">
+        <div class="face-num">
+          <span class="face-badge">1</span>
+          <span class="face-title">Face 1</span>
+        </div>
+        <video class="vplayer" controls preload="metadata">
           <source src="videos/face1.mp4" type="video/mp4"/>
-          Votre navigateur ne supporte pas la lecture vidéo.
         </video>
       </div>
-      <p class="video-label">Face 1 — projection avant</p>
-    </div>
 
-    <div class="face">
-      <h3 class="face-h">Face 2</h3>
-      <div class="video-wrap">
-        <video controls preload="metadata">
+      <div class="face-cell">
+        <div class="face-num">
+          <span class="face-badge">2</span>
+          <span class="face-title">Face 2</span>
+        </div>
+        <video class="vplayer" controls preload="metadata">
           <source src="videos/face2.mp4" type="video/mp4"/>
-          Votre navigateur ne supporte pas la lecture vidéo.
         </video>
       </div>
-      <p class="video-label">Face 2</p>
-    </div>
 
-    <div class="face">
-      <h3 class="face-h">Face 3</h3>
-      <div class="video-wrap">
-        <video controls preload="metadata">
+      <div class="face-cell">
+        <div class="face-num">
+          <span class="face-badge">3</span>
+          <span class="face-title">Face 3</span>
+        </div>
+        <video class="vplayer" controls preload="metadata">
           <source src="videos/face3.mp4" type="video/mp4"/>
-          Votre navigateur ne supporte pas la lecture vidéo.
         </video>
       </div>
-      <p class="video-label">Face 3</p>
-    </div>
 
-    <div class="face">
-      <h3 class="face-h">Face 4</h3>
-      <div class="video-wrap">
-        <video controls preload="metadata">
+      <div class="face-cell">
+        <div class="face-num">
+          <span class="face-badge">4</span>
+          <span class="face-title">Face 4</span>
+        </div>
+        <video class="vplayer" controls preload="metadata">
           <source src="videos/face4.mp4" type="video/mp4"/>
-          Votre navigateur ne supporte pas la lecture vidéo.
         </video>
       </div>
-      <p class="video-label">Face 4</p>
-    </div>
 
-    <div class="face">
-      <h3 class="face-h">Face 5</h3>
-      <div class="video-wrap">
-        <video controls preload="metadata">
+      <div class="face-cell">
+        <div class="face-num">
+          <span class="face-badge">5</span>
+          <span class="face-title">Face 5</span>
+        </div>
+        <video class="vplayer" controls preload="metadata">
           <source src="videos/face5.mp4" type="video/mp4"/>
-          Votre navigateur ne supporte pas la lecture vidéo.
         </video>
       </div>
-      <p class="video-label">Face 5</p>
-    </div>
 
+    </div>
   </div>
 
 
@@ -187,19 +309,15 @@
   <div class="bloc" id="s3">
     <div class="bloc-head">
       <p class="bloc-num">Section 03</p>
-      <h2 class="bloc-h">Simulation PC — rendu final</h2>
+      <h2 class="bloc-h">Simulation — rendu final</h2>
     </div>
     <div class="bloc-body">
-      <p>Cette vidéo est une <strong>simulation réalisée sur ordinateur</strong> qui reproduit le rendu tel qu'il a été présenté lors des portes ouvertes du lycée Saint Gabriel. Elle permet de visualiser l'ensemble du mapping vidéo en conditions réelles, avec toutes les faces de la caisse synchronisées sur la musique.</p>
+      <p>Cette vidéo est une <strong>simulation réalisée sur ordinateur</strong> reproduisant le rendu tel qu'il a été présenté lors des portes ouvertes. Elle permet de visualiser l'ensemble du mapping avec toutes les faces de la caisse synchronisées sur la musique.</p>
     </div>
-    <div class="face">
-      <div class="video-wrap">
-        <video controls preload="metadata">
-          <source src="videos/simulation-pc.mp4" type="video/mp4"/>
-          Votre navigateur ne supporte pas la lecture vidéo.
-        </video>
-      </div>
-      <p class="video-label">Simulation complète — rendu mapping vidéo — Portes ouvertes Saint Gabriel</p>
+    <div class="simu-wrap">
+      <video class="vplayer" controls preload="metadata">
+        <source src="videos/simulation-pc.mp4" type="video/mp4"/>
+      </video>
     </div>
   </div>
 
