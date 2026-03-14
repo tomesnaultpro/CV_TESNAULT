@@ -120,11 +120,6 @@
       background: var(--color-white);
       padding: 20px 24px 22px;
     }
-    /* Face 5 : pleine largeur si seule sur sa ligne */
-    .face-cell:last-child:nth-child(odd) {
-      grid-column: 1 / -1;
-    }
-
     /* Badge numéroté */
     .face-num {
       display: flex; align-items: center; gap: 9px;
@@ -146,9 +141,11 @@
     .vplayer {
       width: 100%;
       display: block;
+      aspect-ratio: 16 / 9;
       border-radius: var(--radius);
       border: 1px solid var(--color-border);
       background: #0d0d0d;
+      object-fit: contain;
     }
 
     /* ── Simulation plein bloc ───────────────── */
@@ -164,7 +161,6 @@
       .faces-intro, .simu-wrap { padding-left: 18px; padding-right: 18px; }
       .face-cell { padding-left: 18px; padding-right: 18px; }
       .faces-grid { grid-template-columns: 1fr; }
-      .face-cell:last-child:nth-child(odd) { grid-column: auto; }
       .meta-item { padding: 12px 18px; }
     }
   </style>
@@ -298,6 +294,26 @@
         </div>
         <video class="vplayer" controls preload="metadata">
           <source src="videos/face5.mp4" type="video/mp4"/>
+        </video>
+      </div>
+
+      <div class="face-cell">
+        <div class="face-num">
+          <span class="face-badge">6</span>
+          <span class="face-title">Face 6</span>
+        </div>
+        <video class="vplayer" controls preload="metadata">
+          <source src="videos/face6.mp4" type="video/mp4"/>
+        </video>
+      </div>
+
+      <div class="face-cell">
+        <div class="face-num">
+          <span class="face-badge">7</span>
+          <span class="face-title">Face 7</span>
+        </div>
+        <video class="vplayer" controls preload="metadata">
+          <source src="videos/face7.mp4" type="video/mp4"/>
         </video>
       </div>
 
