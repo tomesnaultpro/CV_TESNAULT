@@ -110,15 +110,16 @@
     .cover-btn:hover { background: var(--color-dark-2); }
     .cover-btn svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2.5; }
 
-    .rapport-wrap { display: block !important; }
-
     /* =====================================================
        RAPPORT
     ===================================================== */
     #rapport {
-      display: block !important;
+      display: none;
       background: var(--color-bg);
       padding: 48px 40px 96px;
+    }
+    #rapport.visible {
+      display: block;
     }
     
 
@@ -208,7 +209,7 @@
     .bloc-body strong, .zone strong, .act strong {
       color: var(--color-dark);
       font-weight: normal;
-      border-bottom: 1px solid rgba(61,76,65,.2);
+    
     }
     .bloc-body ul, .bloc-body ol {
       padding-left: 20px;
@@ -345,14 +346,60 @@
 </nav>
 
 
-
+<!-- =====================================================
+     COUVERTURE
+===================================================== -->
+<div id="cover" class="cover-page">
+  <div class="cover-wrap">
+    <a href="../experience.html" class="cover-back">&#8592; Retour aux expériences</a>
+    <div class="cover-card">
+      <p class="cover-eyebrow">Rapport de stage — PFMP 4</p>
+      <h1 class="cover-title">Studio Grand Final</h1>
+      <p class="cover-subtitle">Son, sound design &amp; création musicale</p>
+      <div class="cover-line"></div>
+      <div class="cover-grid">
+        <div>
+          <p class="cover-meta-label">Période</p>
+          <p class="cover-meta-value">5 jan. – 23 jan. 2026</p>
+        </div>
+        <div>
+          <p class="cover-meta-label">Durée</p>
+          <p class="cover-meta-value">3 semaines</p>
+        </div>
+        <div>
+          <p class="cover-meta-label">Maître de stage</p>
+          <p class="cover-meta-value">Steward Souppaya</p>
+        </div>
+        <div>
+          <p class="cover-meta-label">Lieu</p>
+          <p class="cover-meta-value">Saint-Jean-de-Monts, Vendée</p>
+        </div>
+        <div>
+          <p class="cover-meta-label">Mail</p>
+          <p class="cover-meta-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6714130210061503491408121717061e06270015060903010e09060b02490115">[email&#160;protected]</a></p>
+        </div>
+        <div>
+          <p class="cover-meta-label">Téléphone</p>
+          <p class="cover-meta-value">07 81 87 66 41</p>
+        </div>
+      </div>
+      <button class="cover-btn" onclick="ouvrirRapport()">
+        Lire le rapport
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
 
 
 <!-- =====================================================
      RAPPORT
 ===================================================== -->
-<div id="rapport" class="rapport-wrap visible">
+<div id="rapport" class="rapport-wrap">
 <div class="rp">
+
+  <span class="rp-back" onclick="retourCouverture()">&#8592; Retour à la couverture</span>
+
   <!-- SOMMAIRE -->
   <div class="sommaire">
     <p class="sommaire-h">Sommaire</p>
@@ -690,6 +737,20 @@
 </footer>
 
 <script src="../script.js"></script>
+<script>
+  function ouvrirRapport() {
+    document.getElementById('cover').style.display = 'none';
+    var r = document.getElementById('rapport');
+    r.classList.add('visible');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
 
+  function retourCouverture() {
+    var r = document.getElementById('rapport');
+    r.classList.remove('visible');
+    document.getElementById('cover').style.display = 'flex';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+</script>
 </body>
 </html>
