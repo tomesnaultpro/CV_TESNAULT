@@ -628,7 +628,7 @@ img { max-width: 100%; display: block; }
 .bloc-body strong, .zone strong, .act strong {
   color: var(--color-dark);
   font-weight: normal;
-  border-bottom: 1px solid rgba(61,76,65,.2);
+
 }
 .bloc-body ul, .bloc-body ol {
   padding-left: 20px;
