@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../style.css"/>
   <style>
 
+    .rapport-wrap { display: block !important; }
     /* =====================================================
        COUVERTURE
     ===================================================== */
@@ -346,56 +347,13 @@
 </nav>
 
 
-<!-- =====================================================
-     COUVERTURE
-===================================================== -->
-<div id="cover" class="cover-page">
-  <div class="cover-wrap">
-    <a href="../experience.html" class="cover-back">&#8592; Retour aux expériences</a>
-    <div class="cover-card">
-      <p class="cover-eyebrow">Rapport de stage — PFMP 4</p>
-      <h1 class="cover-title">Studio Grand Final</h1>
-      <p class="cover-subtitle">Son, sound design &amp; création musicale</p>
-      <div class="cover-line"></div>
-      <div class="cover-grid">
-        <div>
-          <p class="cover-meta-label">Période</p>
-          <p class="cover-meta-value">5 jan. – 23 jan. 2026</p>
-        </div>
-        <div>
-          <p class="cover-meta-label">Durée</p>
-          <p class="cover-meta-value">3 semaines</p>
-        </div>
-        <div>
-          <p class="cover-meta-label">Maître de stage</p>
-          <p class="cover-meta-value">Steward Souppaya</p>
-        </div>
-        <div>
-          <p class="cover-meta-label">Lieu</p>
-          <p class="cover-meta-value">Saint-Jean-de-Monts, Vendée</p>
-        </div>
-        <div>
-          <p class="cover-meta-label">Mail</p>
-          <p class="cover-meta-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6714130210061503491408121717061e06270015060903010e09060b02490115">[email&#160;protected]</a></p>
-        </div>
-        <div>
-          <p class="cover-meta-label">Téléphone</p>
-          <p class="cover-meta-value">07 81 87 66 41</p>
-        </div>
-      </div>
-      <button class="cover-btn" onclick="ouvrirRapport()">
-        Lire le rapport
-        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-    </div>
-  </div>
-</div>
+
 
 
 <!-- =====================================================
      RAPPORT
 ===================================================== -->
-<div id="rapport" class="rapport-wrap">
+<div id="rapport" class="rapport-wrap visible">
 <div class="rp">
 
   <span class="rp-back" onclick="retourCouverture()">&#8592; Retour à la couverture</span>
@@ -724,6 +682,15 @@
     </div>
   </div>
 
+
+<div style="text-align:center; padding: 48px 40px 16px;">
+  <a href="https://docs.google.com/document/d/17MYyfzo4PVglABNwD-tFq0DX7gbj0wYyrlRfLcI8DAQ/edit?tab=t.0"
+     target="_blank"
+     style="display:inline-flex; align-items:center; gap:10px; background:var(--color-dark); color:var(--color-white); font-family:var(--font-sans); font-size:0.72rem; letter-spacing:1.2px; text-transform:uppercase; padding:14px 30px; border-radius:var(--radius); text-decoration:none;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    Voir le rapport de stage complet
+  </a>
+</div>
 </div><!-- /rp -->
 </div><!-- /rapport -->
 
@@ -737,20 +704,6 @@
 </footer>
 
 <script src="../script.js"></script>
-<script>
-  function ouvrirRapport() {
-    document.getElementById('cover').style.display = 'none';
-    var r = document.getElementById('rapport');
-    r.classList.add('visible');
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }
 
-  function retourCouverture() {
-    var r = document.getElementById('rapport');
-    r.classList.remove('visible');
-    document.getElementById('cover').style.display = 'flex';
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }
-</script>
 </body>
 </html>
