@@ -3,13 +3,214 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Associations — Tom Esnault</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Festival de Poupet — Tom Esnault</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+    .rapport-wrap { display: block !important; }
+    #rapport {
+      display: block !important;
+      background: var(--color-bg);
+      padding: 48px 40px 96px;
+    }
+    .rp { max-width: 820px; margin: 0 auto; }
+
+    /* ── Sommaire ─────────────────────────── */
+    .sommaire {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 24px 32px;
+      margin-bottom: 20px;
+    }
+    .sommaire-h {
+      font-size: 0.6rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--color-mid); margin-bottom: 14px;
+    }
+    .sommaire ul { list-style: none; padding: 0; }
+    .sommaire li a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 5px 0; font-size: 0.79rem; color: var(--color-text-2);
+      transition: color 0.15s;
+    }
+    .sommaire li a:hover { color: var(--color-dark); }
+    .s-n { font-family: var(--font-serif); color: var(--color-mid); font-size: .68rem; min-width: 18px; }
+    .s-d { flex: 1; border-bottom: 1px dotted var(--color-border); height: 1px; align-self: center; }
+
+    /* ── Blocs ────────────────────────────── */
+    .bloc {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 16px;
+      scroll-margin-top: 88px;
+    }
+    .bloc-head { padding: 20px 32px 16px; border-bottom: 1px solid var(--color-bg); }
+    .bloc-h {
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-weight: normal; color: var(--color-dark);
+    }
+    .bloc-body { padding: 22px 32px; }
+    .bloc-body p {
+      font-size: 0.82rem; color: var(--color-text-2);
+      line-height: 1.85; margin-bottom: 12px;
+    }
+    .bloc-body p:last-child { margin-bottom: 0; }
+    .bloc-body strong { color: var(--color-dark); font-weight: normal; }
+
+    /* ── Métadonnées ──────────────────────── */
+    .projet-meta {
+      display: flex; flex-wrap: wrap; gap: 0;
+      border-top: 1px solid var(--color-bg);
+    }
+    .meta-item {
+      display: flex; flex-direction: column; gap: 4px;
+      padding: 14px 28px;
+      border-right: 1px solid var(--color-bg);
+      flex: 1 1 130px;
+    }
+    .meta-item:last-child { border-right: none; }
+    .meta-label {
+      font-size: 0.58rem; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--color-mid);
+    }
+    .meta-value {
+      font-size: 0.78rem; color: var(--color-dark);
+      font-family: var(--font-serif); line-height: 1.4;
+    }
+
+    /* ── Zone sous-section ────────────────── */
+    .zone { padding: 20px 32px; border-top: 1px solid var(--color-bg); }
+    .zone p {
+      font-size: 0.82rem; color: var(--color-text-2);
+      line-height: 1.85; margin-bottom: 10px;
+    }
+    .zone p:last-child { margin-bottom: 0; }
+    .zone strong { color: var(--color-dark); font-weight: normal; }
+    h3.sh {
+      font-family: var(--font-serif); font-size: 0.92rem;
+      font-weight: normal; color: var(--color-dark);
+      margin: 0 0 14px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-bg);
+    }
+
+    /* ── Activités (liste) ────────────────── */
+    .activites-list { list-style: none; padding: 0; margin: 0; }
+    .activites-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--color-bg);
+      font-size: 0.82rem; color: var(--color-text-2); line-height: 1.7;
+    }
+    .activites-list li:last-child { border-bottom: none; }
+    .act-dot {
+      width: 6px; height: 6px; flex-shrink: 0;
+      background: var(--color-dark); border-radius: 50%;
+      margin-top: 7px;
+    }
+
+    /* ── Artistes grid ────────────────────── */
+    .artistes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--color-bg);
+      border-top: 1px solid var(--color-bg);
+    }
+    .artiste-cell {
+      background: var(--color-white);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .artiste-photo {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover; object-position: top;
+      display: block;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-bg);
+    }
+    .artiste-info {
+      padding: 12px 16px;
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .artiste-name {
+      font-family: var(--font-serif); font-size: 0.88rem;
+      font-weight: normal; color: var(--color-dark);
+    }
+    .artiste-tag {
+      font-size: 0.62rem; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--color-mid);
+    }
+
+    /* ── Galerie ──────────────────────────── */
+    .galerie-wrap { padding: 20px 32px 24px; border-top: 1px solid var(--color-bg); }
+    .galerie-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .galerie-grid img {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 1px solid var(--color-border);
+      display: block;
+      background: var(--color-bg);
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .galerie-grid img:hover { opacity: 0.88; transform: scale(1.02); }
+
+    /* Lightbox */
+    .lightbox {
+      display: none; position: fixed;
+      inset: 0; background: rgba(0,0,0,0.88);
+      z-index: 9999; align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw; max-height: 90vh;
+      object-fit: contain; border-radius: var(--radius);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 24px;
+      color: rgba(255,255,255,0.7); font-size: 1.6rem;
+      cursor: pointer; line-height: 1; background: none; border: none;
+      transition: color 0.15s;
+    }
+    .lightbox-close:hover { color: #fff; }
+
+    /* Message placeholder galerie */
+    .galerie-placeholder {
+      grid-column: 1 / -1;
+      padding: 28px 0;
+      text-align: center;
+      font-size: 0.78rem; color: var(--color-mid);
+      font-family: var(--font-serif);
+      border: 1px dashed var(--color-border);
+      border-radius: var(--radius);
+    }
+
+    @media (max-width: 768px) {
+      #rapport { padding: 28px 18px 72px; }
+      .bloc-head, .bloc-body, .zone,
+      .galerie-wrap { padding-left: 18px; padding-right: 18px; }
+      .meta-item { padding: 12px 18px; }
+      .artistes-grid { grid-template-columns: 1fr 1fr; }
+      .galerie-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .artistes-grid { grid-template-columns: 1fr; }
+      .galerie-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-brand">
+  <a href="../index.html" class="nav-brand">
     <span class="nav-brand-name">Tom Esnault</span>
     <span class="nav-brand-sub">Portfolio</span>
   </a>
@@ -17,128 +218,226 @@
     <span></span><span></span><span></span>
   </button>
   <div class="nav-links" id="navLinks">
-    <a href="experience.html">Expérience</a>
-    <a href="projet.html">Projet</a>
-    <a href="association.html" class="active">Association</a>
+    <a href="../experience.html">Expérience</a>
+    <a href="../projet.html">Projet</a>
+    <a href="../association.html" class="active">Association</a>
   </div>
 </nav>
 
-<div class="page-hero">
-  <div class="page-hero-inner">
-    <p class="page-hero-eyebrow">Portfolio — Tom Esnault</p>
-    <h1>Associations</h1>
-    <p class="page-hero-desc">Engagements associatifs — audiovisuel, sport et artisanat</p>
+<div id="rapport" class="rapport-wrap visible">
+<div class="rp">
+
+  <!-- SOMMAIRE -->
+  <div class="sommaire">
+    <p class="sommaire-h">Sommaire</p>
+    <ul>
+      <li><a href="#s1"><span class="s-n">01</span><span>Présentation</span><span class="s-d"></span></a></li>
+      <li><a href="#s2"><span class="s-n">02</span><span>Mon expérience</span><span class="s-d"></span></a></li>
+      <li><a href="#s3"><span class="s-n">03</span><span>Artistes</span><span class="s-d"></span></a></li>
+      <li><a href="#s4"><span class="s-n">04</span><span>Galerie</span><span class="s-d"></span></a></li>
+    </ul>
   </div>
-</div>
 
-<div class="page-wrap">
 
-  <!-- 01 — AUDIOVISUEL -->
-  <div class="section-block">
-    <div class="section-head">
-      <span class="section-num">01</span>
-      <h2 class="section-title">Associations audiovisuelles</h2>
+  <!-- S1 — PRÉSENTATION -->
+  <div class="bloc" id="s1">
+    <div class="bloc-head">
+      <h2 class="bloc-h">Présentation du festival</h2>
     </div>
-
-    <div class="cards-grid">
-
-      <div class="card clickable" onclick="location.href='festival-poupet/festival-poupet.html'">
-        <span class="card-icon">🎙</span>
-        <span class="card-tag">Association · Son</span>
-        <h3>Festival de Poupet</h3>
-        <p>Bénévole technique depuis bientôt 3 ans — son, lumière et effets spéciaux lors des changements de plateau et balances.</p>
-        <span class="card-link">En savoir plus →</span>
+    <div class="bloc-body">
+      <p>Le <strong>Festival de Poupet</strong> est un festival de musique organisé chaque été dans la région vendéenne. C'est à la suite d'un contact par mail que j'ai eu la chance d'être invité à y participer en tant que <strong>bénévole technique</strong>. J'ai accepté sans hésiter, et cela fait maintenant <strong>bientôt 3 ans</strong> que je m'y implique avec plaisir.</p>
+      <p>Cette expérience m'a permis de mettre en pratique mes compétences techniques dans un cadre professionnel exigeant, en côtoyant des équipes de production et des artistes de renommée nationale et internationale.</p>
+    </div>
+    <div class="projet-meta">
+      <div class="meta-item">
+        <span class="meta-label">Type</span>
+        <span class="meta-value">Bénévole technique</span>
       </div>
-
-      <div class="card clickable" onclick="location.href='asso-roue-cool.html'">
-        <span class="card-icon">🎡</span>
-        <span class="card-tag">Association · Événementiel</span>
-        <h3>Roue Cool</h3>
-        <p>Association événementielle — organisation et soutien technique pour des animations locales.</p>
-        <span class="card-link">En savoir plus →</span>
+      <div class="meta-item">
+        <span class="meta-label">Participation</span>
+        <span class="meta-value">Bientôt 3 ans</span>
       </div>
-
-      <div class="card clickable" onclick="location.href='asso-spot.html'">
-        <span class="card-icon">💡</span>
-        <span class="card-tag">Association · Lumière</span>
-        <h3>Spot</h3>
-        <p>Association de gestion de l'éclairage scénique — installation, réglage et conduite des projecteurs.</p>
-        <span class="card-link">En savoir plus →</span>
+      <div class="meta-item">
+        <span class="meta-label">Dates</span>
+        <span class="meta-value">≈ 12 dates</span>
       </div>
-
-      <div class="card">
-        <span class="card-icon">🎶</span>
-        <span class="card-tag">Association · Spectacle</span>
-        <h3>Accordéon et Théâtre</h3>
-        <p>Association culturelle mêlant accordéon et théâtre — soutien technique aux représentations scéniques.</p>
+      <div class="meta-item">
+        <span class="meta-label">Domaines</span>
+        <span class="meta-value">Son · Lumière · FX</span>
       </div>
-
     </div>
   </div>
 
-  <!-- 02 — SPORT -->
-  <div class="section-block">
-    <div class="section-head">
-      <span class="section-num">02</span>
-      <h2 class="section-title">Associations sportives</h2>
+
+  <!-- S2 — MON EXPÉRIENCE -->
+  <div class="bloc" id="s2">
+    <div class="bloc-head">
+      <h2 class="bloc-h">Mon expérience</h2>
     </div>
 
-    <div class="cards-grid">
-
-      <div class="card">
-        <span class="card-icon">🤾</span>
-        <span class="card-tag">Sport · Handball</span>
-        <h3>Handball</h3>
-        <p>Pratique du handball en club — <strong>Champion de Vendée 2025</strong>. Travail d'équipe, compétition et dépassement de soi.</p>
-      </div>
-
-      <div class="card">
-        <span class="card-icon">⛷</span>
-        <span class="card-tag">Sport · Ski</span>
-        <h3>Ski</h3>
-        <p>Pratique du ski alpin — niveau 3ème Étoile. Développement de la technique et de la maîtrise sur les pistes.</p>
-      </div>
-
-      <div class="card">
-        <span class="card-icon">🎾</span>
-        <span class="card-tag">Sport · Tennis</span>
-        <h3>Tennis</h3>
-        <p>Pratique du tennis depuis 9 ans — régularité, précision et engagement dans un club local.</p>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- 03 — ARTISANAT -->
-  <div class="section-block">
-    <div class="section-head">
-      <span class="section-num">03</span>
-      <h2 class="section-title">Artisanat</h2>
+    <div class="bloc-body">
+      <p>Au fil des éditions, j'ai eu l'opportunité de travailler sur plusieurs postes techniques, ce qui m'a permis de développer une polyvalence réelle dans les métiers du spectacle vivant.</p>
     </div>
 
-    <div class="cards-grid">
+    <div class="zone">
+      <h3 class="sh">Activités réalisées</h3>
+      <ul class="activites-list">
+        <li>
+          <span class="act-dot"></span>
+          <span>Manipulation d'une <strong>console de son</strong> — prise en main rapide d'un équipement professionnel lors des préparations de scène.</span>
+        </li>
+        <li>
+          <span class="act-dot"></span>
+          <span><strong>Road</strong> durant les <strong>changements de plateau</strong> — transport, installation et rangement du matériel scénique entre les passages d'artistes.</span>
+        </li>
+        <li>
+          <span class="act-dot"></span>
+          <span><strong>Road</strong> durant les <strong>balances</strong> — préparation et câblage du matériel avant les répétitions et réglages des artistes.</span>
+        </li>
+        <li>
+          <span class="act-dot"></span>
+          <span>Participation à <strong>environ 12 dates</strong> sur plusieurs éditions du festival.</span>
+        </li>
+        <li>
+          <span class="act-dot"></span>
+          <span>Travail dans le domaine du <strong>son</strong>, de la <strong>lumière</strong> et des <strong>effets spéciaux</strong> scéniques.</span>
+        </li>
+      </ul>
+    </div>
 
-      <div class="card">
-        <span class="card-icon">🪚</span>
-        <span class="card-tag">Association · Artisanat</span>
-        <h3>L'Outil en Main</h3>
-        <p>Association de transmission des métiers manuels — apprentissage des techniques artisanales auprès de compagnons.</p>
-      </div>
-
+    <div class="zone">
+      <h3 class="sh">Lien avec mon stage Nant'Effect</h3>
+      <p>Cette expérience au festival m'a directement mis en relation avec l'entreprise <strong>Nant'Effect</strong>, prestataire d'effets spéciaux scéniques avec laquelle j'ai ensuite effectué un <strong>stage professionnel</strong>. La collaboration au festival a constitué un premier contact concret avec leur équipe et leurs équipements.</p>
     </div>
   </div>
 
+
+  <!-- S3 — ARTISTES -->
+  <div class="bloc" id="s3">
+    <div class="bloc-head">
+      <h2 class="bloc-h">Artistes</h2>
+    </div>
+    <div class="bloc-body">
+      <p>Au cours de mes participations, j'ai eu la chance de travailler aux côtés des équipes techniques intervenant pour de nombreux artistes, parmi lesquels :</p>
+    </div>
+    <div class="artistes-grid">
+      <div class="artiste-cell">
+        <img class="artiste-photo" src="images/DJ Snake.jpg" alt="DJ Snake" loading="lazy"/>
+        <div class="artiste-info">
+          <span class="artiste-name">DJ Snake</span>
+          <span class="artiste-tag">Electronic · DJ</span>
+        </div>
+      </div>
+      <div class="artiste-cell">
+        <img class="artiste-photo" src="images/la-femme.jpg" alt="La Femme" loading="lazy"/>
+        <div class="artiste-info">
+          <span class="artiste-name">La Femme</span>
+          <span class="artiste-tag">Rock · Électro</span>
+        </div>
+      </div>
+      <div class="artiste-cell">
+        <img class="artiste-photo" src="images/pierre-garnier.jpg" alt="Pierre Garnier" loading="lazy"/>
+        <div class="artiste-info">
+          <span class="artiste-name">Pierre Garnier</span>
+          <span class="artiste-tag">Pop · Chanson</span>
+        </div>
+      </div>
+      <div class="artiste-cell">
+        <img class="artiste-photo" src="images/jeremy-frerot.jpg" alt="Jérémy Frerot" loading="lazy"/>
+        <div class="artiste-info">
+          <span class="artiste-name">Jérémy Frerot</span>
+          <span class="artiste-tag">Pop · Chanson</span>
+        </div>
+      </div>
+      <div class="artiste-cell">
+        <img class="artiste-photo" src="images/trym.jpg" alt="Trym" loading="lazy"/>
+        <div class="artiste-info">
+          <span class="artiste-name">Trym</span>
+          <span class="artiste-tag">Électro · DJ</span>
+        </div>
+      </div>
+      <div class="artiste-cell" style="align-items:center;justify-content:center;padding:28px 16px;background:var(--color-bg);">
+        <div class="artiste-info" style="align-items:center;">
+          <span class="artiste-name" style="font-size:1.4rem;color:var(--color-mid);">…</span>
+          <span class="artiste-tag">Et bien d'autres</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S4 — GALERIE -->
+  <div class="bloc" id="s4">
+    <div class="bloc-head">
+      <h2 class="bloc-h">Galerie</h2>
+    </div>
+    <div class="galerie-wrap">
+      <div class="galerie-grid" id="galerieGrid">
+        <!-- Les images se chargent dynamiquement si présentes, sinon placeholder -->
+        <div class="galerie-placeholder" id="galeriePlaceholder">
+          Ajoutez vos photos dans le dossier <strong>images/</strong> et mettez à jour les chemins ci-dessous.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /rp -->
+</div><!-- /rapport -->
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightboxImg" src="" alt=""/>
 </div>
 
 <footer class="site-footer">
   <span class="footer-name">Tom Esnault</span>
   <div class="footer-links">
-    <a href="index.html">Accueil</a>
-    <a href="experience.html">Expérience</a>
-    <a href="projet.html">Projets</a>
+    <a href="../index.html">Accueil</a>
+    <a href="../association.html">Associations</a>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="../script.js"></script>
+<script>
+  // ── Galerie dynamique ──────────────────────────────────────────
+  // Ajoute tes images ici avec leur nom de fichier exact
+  const photos = [
+    // Exemples — décommente et remplace par tes vrais noms de fichiers :
+    // { src: 'images/photo1.jpg', alt: 'Festival de Poupet — scène' },
+    // { src: 'images/photo2.jpg', alt: 'Festival de Poupet — sons' },
+    // { src: 'images/photo3.jpg', alt: 'Festival de Poupet — lumières' },
+  ];
+
+  const grid = document.getElementById('galerieGrid');
+  const placeholder = document.getElementById('galeriePlaceholder');
+
+  if (photos.length > 0) {
+    placeholder.remove();
+    photos.forEach(p => {
+      const img = document.createElement('img');
+      img.src = p.src;
+      img.alt = p.alt;
+      img.loading = 'lazy';
+      img.onclick = () => openLightbox(p.src, p.alt);
+      grid.appendChild(img);
+    });
+  }
+
+  // ── Lightbox ───────────────────────────────────────────────────
+  function openLightbox(src, alt) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightboxImg').alt = alt;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
 </body>
 </html>
