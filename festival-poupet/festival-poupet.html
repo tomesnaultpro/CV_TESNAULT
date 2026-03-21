@@ -193,6 +193,22 @@
       border-radius: var(--radius);
     }
 
+    /* ── Aftermovie YouTube ──────────────── */
+    .yt-wrap {
+      position: relative; width: 100%;
+      padding-top: 56.25%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      background: #0d0d0d;
+      margin: 0;
+    }
+    .yt-wrap iframe {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; border: none;
+    }
+    .video-section { padding: 20px 32px 24px; border-top: 1px solid var(--color-bg); }
+
     @media (max-width: 768px) {
       #rapport { padding: 28px 18px 72px; }
       .bloc-head, .bloc-body, .zone,
@@ -234,7 +250,8 @@
       <li><a href="#s1"><span class="s-n">01</span><span>Présentation</span><span class="s-d"></span></a></li>
       <li><a href="#s2"><span class="s-n">02</span><span>Mon expérience</span><span class="s-d"></span></a></li>
       <li><a href="#s3"><span class="s-n">03</span><span>Artistes</span><span class="s-d"></span></a></li>
-      <li><a href="#s4"><span class="s-n">04</span><span>Galerie</span><span class="s-d"></span></a></li>
+      <li><a href="#s4"><span class="s-n">04</span><span>Aftermovie 2025</span><span class="s-d"></span></a></li>
+      <li><a href="#s5"><span class="s-n">05</span><span>Galerie</span><span class="s-d"></span></a></li>
     </ul>
   </div>
 
@@ -367,8 +384,25 @@
   </div>
 
 
-  <!-- S4 — GALERIE -->
+  <!-- S4 — AFTERMOVIE -->
   <div class="bloc" id="s4">
+    <div class="bloc-head">
+      <h2 class="bloc-h">Aftermovie 2025</h2>
+    </div>
+    <div class="video-section">
+      <div class="yt-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/3fHGJ5K_h9s"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S5 — GALERIE -->
+  <div class="bloc" id="s5">
     <div class="bloc-head">
       <h2 class="bloc-h">Galerie</h2>
     </div>
